@@ -64,6 +64,20 @@
                 "sampleName": "AdventureWorksLT",
                 "AllowAllAzureServices": true
             }
+        },
+        {
+           "type": "Microsoft.DBforPostgreSQL/servers/firewallRules",
+            "name": "AllowAllWindowsAzureIps",
+            "apiVersion": "2017-12-01-preview",
+            "scale": null,
+            "properties": {
+                "startIpAddress": "0.0.0.0",
+                "endIpAddress": "0.0.0.0"
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', concat(parameters('servers_sample_db_server_mas_name'), uniqueString(resourceGroup().id)), '/samplesales' )]"
+
+            ]
         }
     ]
 }
