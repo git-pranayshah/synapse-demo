@@ -66,7 +66,7 @@
             }
         },
         {
-            "type": "Microsoft.Sql/servers/firewallRule",
+            "type": "Microsoft.Sql/servers/databases/firewallRule",
             "apiVersion": "2021-08-01-preview",
             "name": "allowallazureips",
             "scale": null,
