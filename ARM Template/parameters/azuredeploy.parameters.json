@@ -5,7 +5,8 @@
             
 
         "servers_sample_db_server_mas_name": {
-            "Value":"[concat('samplesqldb-', uniqueString(resourceGroup().id))]"
+            "defaultValue":"[concat('samplesqldb-', uniqueString(resourceGroup().id))]",
+            "type": "String"
             
         },
         "privateEndpoints_private_db_name": {
