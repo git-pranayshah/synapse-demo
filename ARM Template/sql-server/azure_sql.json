@@ -71,6 +71,7 @@
             "apiVersion": "2017-12-01-preview",
             "scale": null,
             "properties": {
+                "mode": "Incremental",
                 "startIpAddress": "0.0.0.0",
                 "endIpAddress": "0.0.0.0"
             },
