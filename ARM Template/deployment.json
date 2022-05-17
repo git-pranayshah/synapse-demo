@@ -12,6 +12,9 @@
           "mode": "Incremental",
           "templateLink": {
             "uri":"https%3A%2F%2Fraw.githubusercontent.com%2Fgit-pranayshah%2Fsynapse-demo%2Fdev%2FARM%2520Template%2FSQL-Server%2Fazure_sql.json"
+          },
+          "parametersLink": {
+            "uri": "https%3A%2F%2Fraw.githubusercontent.com%2Fgit-pranayshah%2Fsynapse-demo%2Fdev%2FARM%2520Template%2FParameters%2Fparameters.json"
           }
         }
       }
