@@ -4,8 +4,9 @@
     "parameters": {
     
         "privateEndpoints_private_db_name": {
-            "value": "private-db",
-            "type": "String"
+            "type": "string",
+            "defaultValue": "private-db"
+            
         },
        
         "servers_sample_db_server_mas_name": {
