@@ -52,7 +52,6 @@
             },
             "kind": "v12.0,user,vcore",
             "properties": {
-                "mode": "Incremental",
                 "collation": "SQL_Latin1_General_CP1_CI_AS",
                 "maxSizeBytes": 34359738368,
                 "catalogCollation": "SQL_Latin1_General_CP1_CI_AS",
