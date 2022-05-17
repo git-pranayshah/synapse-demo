@@ -6,8 +6,7 @@
             "type": "String"
         },
         "servers_sample_db_server_mas_name": {
-            "type": "String",
-            "defaultValue": "[concat('samplesqldb-', uniqueString(resourceGroup().id))]"
+            "type": "String"
         },
         "privateEndpoints_private_db_name": {
             "type": "String"
@@ -24,7 +23,7 @@
         {
             "type": "Microsoft.Sql/servers",
             "apiVersion": "2021-08-01-preview",
-            "name": "[concat('samplesqldb-', uniqueString(resourceGroup().id))]",
+            "name": "[parameters('servers_sample_db_server_mas_name')]",
             "location": "[resourceGroup().location]",
             "kind": "v12.0",
             "properties": {
