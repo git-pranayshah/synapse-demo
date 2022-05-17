@@ -15,28 +15,7 @@
             "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/sql-server/azure_sql.json"            },
           "parametersLink": {
                 "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/parameters/azuredeploy.parameters.json"
-          },
-          "parameters": {
-            "servers_sample_db_server_mas_name": {
-                "defaultValue":"[concat('samplesqldb-', uniqueString(resourceGroup().id))]",
-                "type": "string"
-            },
-    
-            "privateEndpoints_private_db_name": {
-                "defaultValue": "private-db",
-                "type": "string"
-            },
-           
-            "servers_sql_db_awd_login_user": {
-                "defaultValue": "sql-admin",
-                "type": "String"
-            },
-    
-            "servers_sql_db_awd_login_password": {
-                "defaultValue": "",
-                "type": "securestring"
-            }
-        }
+          }
         }
       }
     ],
