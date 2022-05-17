@@ -3,24 +3,20 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
             "privateEndpoints_private_db_name": {
-
             "value": "private-db"
             
         },
        
         "servers_sample_db_server_mas_name": {
-            "defaultValue":"[concat('samplesqldb-', uniqueString(resourceGroup().id))]",
-            "type": "string"
+            "value":"[concat('samplesqldb-', uniqueString(resourceGroup().id))]",
         },
 
         "servers_sql_db_awd_login_user": {
-            "defaultValue": "sql-admin",
-            "type": "String"
+            "value": "sql-admin"
         },
 
         "servers_sql_db_awd_login_password": {
-            "defaultValue": "",
-            "type": "securestring"
+            "value": "",
         }
     }
 }
