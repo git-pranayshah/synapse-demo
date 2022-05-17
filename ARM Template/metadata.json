@@ -1,0 +1,9 @@
+{
+    "$schema": "https://aka.ms/azure-quickstart-templates-metadata-schema#",
+    "type": "QuickStart",
+    "itemDisplayName": "Deploy Synapse Workspace with sample data",
+    "description": "Deploy Synapse Workspace with sample data",
+    "summary": "Deploy Synapse Workspace with sample data",
+    "githubUsername": "git-pranayshah",
+    "dateUpdated": "2021-05-17"
+  }
