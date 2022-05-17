@@ -1,6 +1,24 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
+    "parameters":{
+        "servers_sample_db_server_mas_name": {
+            "defaultValue":"[concat('samplesqldb-', uniqueString(resourceGroup().id))]",
+            "type": "String"
+        },
+        "privateEndpoints_private_db_name": {
+            "defaultValue": "private-db",
+            "type": "String"
+        },
+        "servers_sql_db_awd_login_user": {
+            "defaultValue": "sql-admin",
+            "type": "String"
+        },
+        "servers_sql_db_awd_login_password": {
+            "defaultValue": "",
+            "type": "securestring"
+        }
+    },
     "variables": {},
     "resources": [
     {
@@ -10,9 +28,6 @@
             "location": "[resourceGroup().location]",
             "kind": "v12.0",
             "properties": {
-                "parametersLink": {
-                    "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/parameters/azuredeploy.parameters.json"
-                },
                 "mode": "Incremental",
                 "administratorLogin": "[parameters('servers_sql_db_awd_login_user')]",
                 "administratorLoginPassword": "[parameters('servers_sql_db_awd_login_password')]",
