@@ -66,19 +66,17 @@
             }
         },
         {
-            "type": "Microsoft.Sql/servers/databases/firewallRule",
+            "type": "Microsoft.Sql/servers/firewallRules",
             "apiVersion": "2021-08-01-preview",
-            "name": "allowallazureips",
-            "scale": null,
-            "properties": {
-                "mode": "Incremental",
-                "startIpAddress": "0.0.0.0",
-                "endIpAddress": "0.0.0.0"
-            },
+            "name": "[concat(concat(parameters('servers_sample_db_server_mas_name'), uniqueString(resourceGroup().id)), '/manual')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers/databases', concat(parameters('servers_sample_db_server_mas_name'), uniqueString(resourceGroup().id)), 'samplesales' )]"
-
-            ]
+                "[resourceId('Microsoft.Sql/servers', concat(parameters('servers_sample_db_server_mas_name'), uniqueString(resourceGroup().id)))]"
+            ],
+            "properties": {
+                "startIpAddress": "0.0.0.0",
+                "endIpAddress": "0.0.0.0",
+                "AllowAllAzureServices": true
+            }
         }
     ]
 }
