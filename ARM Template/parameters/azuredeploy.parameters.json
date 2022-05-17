@@ -2,6 +2,9 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "subscription_id": {
+            "value": "f39588f8-a5eb-47fc-8605-68dd157901bd"
+        },
         "privateEndpoints_private_db_name": {
             "value": "private-db"
         },
