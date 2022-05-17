@@ -23,7 +23,7 @@
         {
             "type": "Microsoft.Sql/servers",
             "apiVersion": "2021-08-01-preview",
-            "name": "[parameters('servers_sample_db_server_mas_name')]",
+            "name": "[concat(parameters('servers_sample_db_server_mas_name'), uniqueString(resourceGroup().id))]",
             "location": "[resourceGroup().location]",
             "kind": "v12.0",
             "properties": {
@@ -39,9 +39,9 @@
         {
             "type": "Microsoft.Sql/servers/databases",
             "apiVersion": "2021-08-01-preview",
-            "name": "[concat(parameters('servers_sample_db_server_mas_name'), '/samplesales')]",
+            "name": "[concat(concat(parameters('servers_sample_db_server_mas_name'), uniqueString(resourceGroup().id)), '/samplesales')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('servers_sample_db_server_mas_name'))]"
+                "[resourceId('Microsoft.Sql/servers', concat(parameters('servers_sample_db_server_mas_name'), uniqueString(resourceGroup().id)))]"
             ],
             "location": "[resourceGroup().location]",
             "sku": {

@@ -9,7 +9,7 @@
             "value": "private-db"
         },
         "servers_sample_db_server_mas_name" : {
-            "value": "concat('samplesqldb-', uniqueString(resourceGroup().id))"
+            "value": "samplesqldb"
         },
         "servers_sql_db_awd_login_user": {
             "value": "sql-admin"
