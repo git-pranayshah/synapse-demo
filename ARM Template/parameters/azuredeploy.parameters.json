@@ -15,6 +15,9 @@
         "servers_sql_db_awd_login_password": {
             "value": "Passw@rd12"
         },
+        "storageAccounts_synapsewsw_name": {
+            "value": "synapsewsw"
+        },
         "github_account_name": {
             "value": "git-pranayshah"
         },
