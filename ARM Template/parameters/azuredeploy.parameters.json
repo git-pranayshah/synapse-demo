@@ -4,19 +4,19 @@
     "parameters": {
         "servers_sample_db_server_mas_name": {
             "defaultValue":"[concat('samplesqldb-', uniqueString(resourceGroup().id))]",
-            "type": "String"
+            "type": "string"
         },
 
         "privateEndpoints_private_db_name": {
             "defaultValue": "private-db",
-            "type": "String"
+            "type": "string"
         },
        
         "servers_sql_db_awd_login_user": {
             "defaultValue": "sql-admin",
             "type": "String"
         },
-        
+
         "servers_sql_db_awd_login_password": {
             "defaultValue": "",
             "type": "securestring"

@@ -1,36 +1,18 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {
-        "privateEndpoints_private_db_name": {
-            "value": "[parameters('privateEndpoints_private_db_name')]",
-            "type": "string"
-        },
-        
-        "servers_sample_db_server_mas_name": {
-            "value": "[parameters('servers_sample_db_server_mas_name')]",
-            "type": "string"
-        },
-       
-        "servers_sql_db_awd_login_user": {
-            "value": "[parameters('servers_sql_db_awd_login_user')]",
-            "type": "string"
-        },
-
-        "servers_sql_db_awd_login_password": {
-            "value": "[parameters('servers_sql_db_awd_login_password')]",
-            "type": "string"
-        }
-    },
     "variables": {},
     "resources": [
-        {
+    {
             "type": "Microsoft.Sql/servers",
             "apiVersion": "2021-08-01-preview",
             "name": "[parameters('servers_sample_db_server_mas_name')]",
             "location": "[resourceGroup().location]",
             "kind": "v12.0",
             "properties": {
+                "parametersLink": {
+                    "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/parameters/azuredeploy.parameters.json"
+                },
                 "mode": "Incremental",
                 "administratorLogin": "[parameters('servers_sql_db_awd_login_user')]",
                 "administratorLoginPassword": "[parameters('servers_sql_db_awd_login_password')]",
