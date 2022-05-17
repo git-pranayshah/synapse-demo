@@ -5,9 +5,6 @@
         "subscription_id": {
             "value": "f39588f8-a5eb-47fc-8605-68dd157901bd"
         },
-        "privateEndpoints_private_db_name": {
-            "value": "private-db"
-        },
         "servers_sample_db_server_mas_name" : {
             "value": "samplesqldb"
         },

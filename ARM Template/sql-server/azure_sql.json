@@ -8,9 +8,6 @@
         "servers_sample_db_server_mas_name": {
             "type": "String"
         },
-        "privateEndpoints_private_db_name": {
-            "type": "String"
-        },
         "servers_sql_db_awd_login_user": {
             "type": "String"
         },

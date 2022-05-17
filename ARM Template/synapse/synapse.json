@@ -5,6 +5,13 @@
         "subscription_id": {
             "type": "String"
         },
+        "servers_sample_db_server_mas_name" : {
+            "type": "String"
+        },
+        "servers_sql_db_awd_login_password": {
+            "type": "String"
+        },
+
         "workspaces_working_software_name": {
             "defaultValue": "working-software",
             "type": "String"
