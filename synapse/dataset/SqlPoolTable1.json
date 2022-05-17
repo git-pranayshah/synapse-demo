@@ -73,7 +73,7 @@
 			"table": "Customer"
 		},
 		"sqlPool": {
-			"referenceName": "datapool",
+			"referenceName": "dedicatedsqlpool",
 			"type": "SqlPoolReference"
 		}
 	}
