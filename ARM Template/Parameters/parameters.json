@@ -1,0 +1,60 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        
+        "Subscription_Id": {
+            "defaultValue": "f39588f8-a5eb-47fc-8605-68dd157901bd",
+            "type": "String"
+        },
+        "server_owner_email": {
+            "defaultValue": "",
+            "type": "String"
+        },
+
+        "servers_sample_db_server_mas_name": {
+            "defaultValue":"[concat('samplesqldb-', uniqueString(resourceGroup().id))]",
+            "type": "String"
+        },
+        "privateEndpoints_private_db_name": {
+            "defaultValue": "private-db",
+            "type": "String"
+        },
+        "virtualNetworks_default_vnet_name": {
+            "defaultValue": "defaultvnet",
+            "type": "String"
+        },
+        "servers_sql_db_awd_login_user": {
+            "defaultValue": "sql-admin",
+            "type": "String"
+        },
+        "servers_sql_db_awd_login_password": {
+            "defaultValue": "",
+            "type": "securestring"
+        }, 
+        
+        "vulnerabilityAssessments_Default_storageContainerPath": {
+            "type": "SecureString"
+        },
+        "servers_synapse_demo_01_name": {
+            "defaultValue": "synapse-demo-01",
+            "type": "String"
+        },
+        "storageAccounts_synapsewsw_name": {
+            "defaultValue": "synapsewsw",
+            "type": "String"
+        },
+        "workspaces_working_software_name": {
+            "defaultValue": "working-software",
+            "type": "String"
+        },
+        "storageAccounts_workingswsynapse_name": {
+            "defaultValue": "workingswsynapse",
+            "type": "String"
+        },
+        "storageAccounts_sqlvay6uh5joqtbuxg_name": {
+            "defaultValue": "sqlvay6uh5joqtbuxg",
+            "type": "String"
+        }
+    }
+}
