@@ -68,7 +68,7 @@
         {
            "type": "Microsoft.Sql/servers/firewallRule",
             "name": "AllowAllWindowsAzureIps",
-            "apiVersion": "2017-12-01-preview",
+            "apiVersion": "2021-08-01-preview",
             "scale": null,
             "properties": {
                 "mode": "Incremental",
