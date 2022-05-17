@@ -100,7 +100,7 @@
                     "sqlOnDemand": "[concat(concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '-ondemand.sql.azuresynapse.net')]",
                     "sql": "[concat(concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '.sql.azuresynapse.net')]"
                 },
-                "managedResourceGroupName": "[concat('synapseworkspace-managedrg-' , uniqueString(resourceGroup().id))",
+                "managedResourceGroupName": "[concat('synapseworkspace-managedrg-' , uniqueString(resourceGroup().id))]",
                 "sqlAdministratorLogin": "[parameters('servers_sql_db_awd_login_user')]",
                 "privateEndpointConnections": [],
                 "workspaceRepositoryConfiguration": {
