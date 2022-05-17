@@ -19,7 +19,7 @@
                 "restrictOutboundNetworkAccess": "Disabled"
             },
             "parametersLink": {
-                "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/parameters/parameters.json"
+                "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/parameters/azuredeploy.parameters.json"
           }
         }
     ]
