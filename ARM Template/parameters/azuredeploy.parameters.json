@@ -5,7 +5,8 @@
         
         "Subscription_Id": {
             "defaultValue": "f39588f8-a5eb-47fc-8605-68dd157901bd",
-            "type": "String"
+            "type": "String",
+            "Value": "f39588f8-a5eb-47fc-8605-68dd157901bd"
         },
         "server_owner_email": {
             "defaultValue": "",
