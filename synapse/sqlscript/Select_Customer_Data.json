@@ -1,0 +1,17 @@
+{
+	"name": "Select_Customer_Data",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP (100) [CustomerID]\n,[NameStyle]\n,[Title]\n,[FirstName]\n,[MiddleName]\n,[LastName]\n,[Suffix]\n,[CompanyName]\n,[SalesPerson]\n,[EmailAddress]\n,[Phone]\n,[PasswordHash]\n,[PasswordSalt]\n,[rowguid]\n,[ModifiedDate]\n FROM [dbo].[Customer]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "datapool",
+				"poolName": "datapool"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
