@@ -8,7 +8,7 @@
         },
        
         "servers_sample_db_server_mas_name": {
-            "value":"[concat('samplesqldb-', uniqueString(resourceGroup().id))]",
+            "value":"[concat('samplesqldb-', uniqueString(resourceGroup().id))]"
         },
 
         "servers_sql_db_awd_login_user": {
@@ -16,7 +16,7 @@
         },
 
         "servers_sql_db_awd_login_password": {
-            "value": "",
+            "value": ""
         }
     }
 }
