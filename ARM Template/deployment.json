@@ -5,18 +5,31 @@
   "functions": [],
   "variables": {},
   "resources": [
-    {
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2021-04-01",
-        "name": "AzureSQLServer",
-        "properties": {
-          "mode": "Incremental",
-          "templateLink": {
-            "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/sql-server/azure_sql.json"            },
-          "parametersLink": {
-                "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/parameters/azuredeploy.parameters.json"
+      {
+        "type": "Microsoft.Resources/deployments",
+        "apiVersion": "2021-04-01",
+          "name": "AzureSQLServer",
+          "properties": {
+            "mode": "Incremental",
+            "templateLink": {
+              "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/sql-server/azure_sql.json"            },
+            "parametersLink": {
+                  "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/parameters/azuredeploy.parameters.json"
+            }
           }
-        }
+      },
+      {
+        "type": "Microsoft.Resources/deployments",
+        "apiVersion": "2021-04-01",
+          "name": "AzureSynapse",
+          "properties": {
+            "mode": "Incremental",
+            "templateLink": {
+              "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/synapse/synapse.json"            },
+            "parametersLink": {
+                  "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/parameters/azuredeploy.parameters.json"
+            }
+          }
       }
     ],
     "outputs": {

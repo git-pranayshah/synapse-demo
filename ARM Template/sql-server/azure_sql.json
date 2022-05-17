@@ -73,8 +73,6 @@
                 "[resourceId('Microsoft.Sql/servers', concat(parameters('servers_sample_db_server_mas_name'), uniqueString(resourceGroup().id)))]"
             ],
             "properties": {
-                "startIpAddress": "0.0.0.0",
-                "endIpAddress": "0.0.0.0",
                 "AllowAllAzureServices": true
             }
         }

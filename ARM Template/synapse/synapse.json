@@ -1,0 +1,552 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters":{
+        "subscription_id": {
+            "type": "String"
+        },
+        "workspaces_working_software_name": {
+            "defaultValue": "working-software",
+            "type": "String"
+        },
+        "storageAccounts_workingswsynapse_name": {
+            "defaultValue": "workingswsynapse",
+            "type": "String"
+        },
+        "servers_sql_db_awd_login_user": {
+            "type": "String"
+        },
+        "github_account_name": {
+            "type": "String"
+        },
+        "github_branch": {
+            "type": "String"
+        },
+        "github_repo": {
+            "type": "String"
+        },
+        "github_rootfolder": {
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+        
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2021-09-01",
+            "name": "[parameters('storageAccounts_workingswsynapse_name')]",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Standard_RAGRS",
+                "tier": "Standard"
+            },
+            "kind": "StorageV2",
+            "properties": {
+                "minimumTlsVersion": "TLS1_2",
+                "allowBlobPublicAccess": true,
+                "isHnsEnabled": true,
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": true,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "keyType": "Account",
+                            "enabled": true
+                        },
+                        "blob": {
+                            "keyType": "Account",
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                },
+                "accessTier": "Hot"
+            }
+        },
+        
+        {
+            "type": "Microsoft.Synapse/workspaces",
+            "apiVersion": "2021-06-01",
+            "name": "[parameters('workspaces_working_software_name')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_workingswsynapse_name'))]"
+            ],
+            "identity": {
+                "type": "SystemAssigned"
+            },
+            "properties": {
+                "defaultDataLakeStorage": {
+                    "resourceId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_workingswsynapse_name'))]",
+                    "createManagedPrivateEndpoint": false,
+                    "accountUrl": "https://workingswsynapse.dfs.core.windows.net",
+                    "filesystem": "synapse"
+                },
+                "encryption": {},
+                "connectivityEndpoints": {
+                    "web": "[concat('https://web.azuresynapse.net?workspace=%2fsubscriptions%2ff39588f8-a5eb-47fc-8605-68dd157901bd%2fresourceGroups%2fworking-sw-synapse%2fproviders%2fMicrosoft.Synapse%2fworkspaces%2f', parameters('workspaces_working_software_name'))]",
+                    "dev": "[concat('https://', parameters('workspaces_working_software_name'), '.dev.azuresynapse.net')]",
+                    "sqlOnDemand": "[concat(parameters('workspaces_working_software_name'), '-ondemand.sql.azuresynapse.net')]",
+                    "sql": "[concat(parameters('workspaces_working_software_name'), '.sql.azuresynapse.net')]"
+                },
+                "managedResourceGroupName": "synapseworkspace-managedrg-e61e7398-b1c7-4d8d-83a0-35751e481210",
+                "sqlAdministratorLogin": "[parameters('servers_sql_db_awd_login_user')]",
+                "privateEndpointConnections": [],
+                "workspaceRepositoryConfiguration": {
+                    "accountName": "[parameters('github_account_name')]", 
+                    "collaborationBranch": "[parameters('github_branch')]",
+                    "repositoryName": "[parameters('github_repo')]",
+                    "rootFolder": "[parameters('github_rootfolder')]",
+                    "type": "WorkspaceGitHubConfiguration"
+                },
+                "publicNetworkAccess": "Enabled",
+                "cspWorkspaceAdminProperties": {
+                    "initialWorkspaceAdminObjectId": "d7439f65-a2d4-49d9-b774-5f61ef72fd1d"
+                },
+                "azureADOnlyAuthentication": false,
+                "trustedServiceBypassEnabled": false
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/firewallRules",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/allowAll')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "AllowAllAzureServices": true
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/integrationruntimes",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/AutoResolveIntegrationRuntime')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "type": "Managed",
+                "typeProperties": {
+                    "computeProperties": {
+                        "location": "AutoResolve"
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "sku": {
+                "name": "DW1000c",
+                "capacity": 0
+            },
+            "properties": {
+                "maxSizeBytes": 263882790666240,
+                "collation": "SQL_Latin1_General_CP1_CI_AS",
+                "storageAccountType": "GRS",
+                "provisioningState": "Succeeded"
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion": "2021-09-01",
+            "name": "[concat(parameters('storageAccounts_workingswsynapse_name'), '/default/synapse')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', parameters('storageAccounts_workingswsynapse_name'), 'default')]",
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_workingswsynapse_name'))]"
+            ],
+            "properties": {
+                "immutableStorageWithVersioning": {
+                    "enabled": false
+                },
+                "defaultEncryptionScope": "$account-encryption-key",
+                "denyEncryptionScopeOverride": false,
+                "publicAccess": "None"
+            }
+        },{
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/largerc')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "minResourcePercent": 0,
+                "maxResourcePercent": 100,
+                "minResourcePercentPerRequest": 22,
+                "maxResourcePercentPerRequest": 22,
+                "importance": "normal",
+                "queryExecutionTimeout": 0
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/mediumrc')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "minResourcePercent": 0,
+                "maxResourcePercent": 100,
+                "minResourcePercentPerRequest": 10,
+                "maxResourcePercentPerRequest": 10,
+                "importance": "normal",
+                "queryExecutionTimeout": 0
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/smallrc')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "minResourcePercent": 0,
+                "maxResourcePercent": 100,
+                "minResourcePercentPerRequest": 3,
+                "maxResourcePercentPerRequest": 3,
+                "importance": "normal",
+                "queryExecutionTimeout": 0
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/staticrc10')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "minResourcePercent": 0,
+                "maxResourcePercent": 100,
+                "minResourcePercentPerRequest": 0.4,
+                "maxResourcePercentPerRequest": 0.4,
+                "importance": "normal",
+                "queryExecutionTimeout": 0
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/staticrc20')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "minResourcePercent": 0,
+                "maxResourcePercent": 100,
+                "minResourcePercentPerRequest": 0.8,
+                "maxResourcePercentPerRequest": 0.8,
+                "importance": "normal",
+                "queryExecutionTimeout": 0
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/staticrc30')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "minResourcePercent": 0,
+                "maxResourcePercent": 100,
+                "minResourcePercentPerRequest": 1.6,
+                "maxResourcePercentPerRequest": 1.6,
+                "importance": "normal",
+                "queryExecutionTimeout": 0
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/staticrc40')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "minResourcePercent": 0,
+                "maxResourcePercent": 100,
+                "minResourcePercentPerRequest": 3.2,
+                "maxResourcePercentPerRequest": 3.2,
+                "importance": "normal",
+                "queryExecutionTimeout": 0
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/staticrc50')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "minResourcePercent": 0,
+                "maxResourcePercent": 100,
+                "minResourcePercentPerRequest": 6.4,
+                "maxResourcePercentPerRequest": 6.4,
+                "importance": "normal",
+                "queryExecutionTimeout": 0
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/staticrc60')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "minResourcePercent": 0,
+                "maxResourcePercent": 100,
+                "minResourcePercentPerRequest": 12.8,
+                "maxResourcePercentPerRequest": 12.8,
+                "importance": "normal",
+                "queryExecutionTimeout": 0
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/staticrc70')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "minResourcePercent": 0,
+                "maxResourcePercent": 100,
+                "minResourcePercentPerRequest": 25.6,
+                "maxResourcePercentPerRequest": 25.6,
+                "importance": "normal",
+                "queryExecutionTimeout": 0
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/staticrc80')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "minResourcePercent": 0,
+                "maxResourcePercent": 100,
+                "minResourcePercentPerRequest": 51.2,
+                "maxResourcePercentPerRequest": 51.2,
+                "importance": "normal",
+                "queryExecutionTimeout": 0
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/xlargerc')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "minResourcePercent": 0,
+                "maxResourcePercent": 100,
+                "minResourcePercentPerRequest": 70,
+                "maxResourcePercentPerRequest": 70,
+                "importance": "normal",
+                "queryExecutionTimeout": 0
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups/workloadClassifiers",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/largerc/largerc')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools/workloadGroups', parameters('workspaces_working_software_name'), 'dedicatedsqlpool', 'largerc')]",
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "memberName": "largerc",
+                "importance": "normal"
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups/workloadClassifiers",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/mediumrc/mediumrc')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools/workloadGroups', parameters('workspaces_working_software_name'), 'dedicatedsqlpool', 'mediumrc')]",
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "memberName": "mediumrc",
+                "importance": "normal"
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups/workloadClassifiers",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/smallrc/smallrc')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools/workloadGroups', parameters('workspaces_working_software_name'), 'dedicatedsqlpool', 'smallrc')]",
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "memberName": "smallrc",
+                "importance": "normal"
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups/workloadClassifiers",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/staticrc10/staticrc10')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools/workloadGroups', parameters('workspaces_working_software_name'), 'dedicatedsqlpool', 'staticrc10')]",
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "memberName": "staticrc10",
+                "importance": "normal"
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups/workloadClassifiers",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/staticrc20/staticrc20')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools/workloadGroups', parameters('workspaces_working_software_name'), 'dedicatedsqlpool', 'staticrc20')]",
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "memberName": "staticrc20",
+                "importance": "normal"
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups/workloadClassifiers",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/staticrc30/staticrc30')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools/workloadGroups', parameters('workspaces_working_software_name'), 'dedicatedsqlpool', 'staticrc30')]",
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "memberName": "staticrc30",
+                "importance": "normal"
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups/workloadClassifiers",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/staticrc40/staticrc40')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools/workloadGroups', parameters('workspaces_working_software_name'), 'dedicatedsqlpool', 'staticrc40')]",
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "memberName": "staticrc40",
+                "importance": "normal"
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups/workloadClassifiers",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/staticrc50/staticrc50')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools/workloadGroups', parameters('workspaces_working_software_name'), 'dedicatedsqlpool', 'staticrc50')]",
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "memberName": "staticrc50",
+                "importance": "normal"
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups/workloadClassifiers",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/staticrc60/staticrc60')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools/workloadGroups', parameters('workspaces_working_software_name'), 'dedicatedsqlpool', 'staticrc60')]",
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "memberName": "staticrc60",
+                "importance": "normal"
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups/workloadClassifiers",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/staticrc70/staticrc70')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools/workloadGroups', parameters('workspaces_working_software_name'), 'dedicatedsqlpool', 'staticrc70')]",
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "memberName": "staticrc70",
+                "importance": "normal"
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups/workloadClassifiers",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/staticrc80/staticrc80')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools/workloadGroups', parameters('workspaces_working_software_name'), 'dedicatedsqlpool', 'staticrc80')]",
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "memberName": "staticrc80",
+                "importance": "normal"
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools/workloadGroups/workloadClassifiers",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), '/dedicatedsqlpool/xlargerc/xlargerc')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools/workloadGroups', parameters('workspaces_working_software_name'), 'dedicatedsqlpool', 'xlargerc')]",
+                "[resourceId('Microsoft.Synapse/workspaces/sqlPools', parameters('workspaces_working_software_name'), 'dedicatedsqlpool')]",
+                "[resourceId('Microsoft.Synapse/workspaces', parameters('workspaces_working_software_name'))]"
+            ],
+            "properties": {
+                "memberName": "xlargerc",
+                "importance": "normal"
+            }
+        }
+ 
+    ]
+}

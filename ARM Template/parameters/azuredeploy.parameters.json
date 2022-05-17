@@ -17,6 +17,18 @@
 
         "servers_sql_db_awd_login_password": {
             "value": "Passw@rd12"
+        },
+        "github_account_name": {
+            "value": "git-pranayshah"
+        },
+        "github_branch": {
+            "value": "dev"
+        },
+        "github_repo": {
+            "value": "synapse-demo"
+        },
+        "github_rootfolder": {
+            "value": "synapse"
         }
     }
 }
