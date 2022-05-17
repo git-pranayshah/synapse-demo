@@ -6,7 +6,7 @@
     {
             "type": "Microsoft.Sql/servers",
             "apiVersion": "2021-08-01-preview",
-            "name": "[parameters('servers_sample_db_server_mas_name')]",
+            "name": "[concat('samplesqldb-', uniqueString(resourceGroup().id))]",
             "location": "[resourceGroup().location]",
             "kind": "v12.0",
             "properties": {
