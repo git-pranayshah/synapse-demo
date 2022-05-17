@@ -2,16 +2,17 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "servers_sample_db_server_mas_name": {
-            "defaultValue":"[concat('samplesqldb-', uniqueString(resourceGroup().id))]",
-            "type": "string"
-        },
-
+    
         "privateEndpoints_private_db_name": {
             "defaultValue": "private-db",
             "type": "string"
         },
        
+        "servers_sample_db_server_mas_name": {
+            "defaultValue":"[concat('samplesqldb-', uniqueString(resourceGroup().id))]",
+            "type": "string"
+        },
+        
         "servers_sql_db_awd_login_user": {
             "defaultValue": "sql-admin",
             "type": "String"
