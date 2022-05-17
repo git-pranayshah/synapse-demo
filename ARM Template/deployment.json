@@ -11,7 +11,7 @@
         "properties": {
           "mode": "Incremental",
           "templateLink": {
-            "uri":"https://mystorageaccount.blob.core.windows.net/AzureTemplates/newStorageAccount.json",
+            "uri":"https%3A%2F%2Fraw.githubusercontent.com%2Fgit-pranayshah%2Fsynapse-demo%2Fdev%2FARM%2520Template%2FSQL-Server%2Fazure_sql.json"
           }
         }
       }
