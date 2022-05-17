@@ -12,7 +12,7 @@
         "properties": {
           "mode": "Incremental",
           "templateLink": {
-                "relativePath": "https%3A%2F%2Fraw.githubusercontent.com%2Fgit-pranayshah%2Fsynapse-demo%2Fdev%2FARM%2520Template%2Fsql-server%2Fazure_sql.json"
+                "uri": "https%3A%2F%2Fraw.githubusercontent.com%2Fgit-pranayshah%2Fsynapse-demo%2Fdev%2FARM%2520Template%2Fsql-server%2Fazure_sql.json"
             },
           "parametersLink": {
                 "uri": "https%3A%2F%2Fraw.githubusercontent.com%2Fgit-pranayshah%2Fsynapse-demo%2Fdev%2FARM%2520Template%2Fparameters%2Fparameters.json"
