@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2021-04-01/deploymentTemplate.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {},
   "functions": [],
@@ -12,10 +12,10 @@
         "properties": {
           "mode": "Incremental",
           "templateLink": {
-                "relativePath": "sql-server/azure_sql.json"
+                "relativePath": "https%3A%2F%2Fraw.githubusercontent.com%2Fgit-pranayshah%2Fsynapse-demo%2Fdev%2FARM%2520Template%2Fsql-server%2Fazure_sql.json"
             },
           "parametersLink": {
-                "relativePath": "parameters/parameters.json"
+                "uri": "https%3A%2F%2Fraw.githubusercontent.com%2Fgit-pranayshah%2Fsynapse-demo%2Fdev%2FARM%2520Template%2Fparameters%2Fparameters.json"
           }
         }
       }
