@@ -9,6 +9,7 @@
             "location": "[resourceGroup().location]",
             "kind": "v12.0",
             "properties": {
+                "mode": "Incremental",
                 "administratorLogin": "[parameters('servers_sql_db_awd_login_user')]",
                 "administratorLoginPassword": "[parameters('servers_sql_db_awd_login_password')]",
                 "version": "12.0",
