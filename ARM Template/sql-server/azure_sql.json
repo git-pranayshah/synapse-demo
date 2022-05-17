@@ -66,9 +66,9 @@
             }
         },
         {
-           "type": "Microsoft.Sql/servers/firewallRule",
-            "name": "AllowAllWindowsAzureIps",
+            "type": "Microsoft.Sql/servers/firewallRule",
             "apiVersion": "2021-08-01-preview",
+            "name": "allowallazureips",
             "scale": null,
             "properties": {
                 "mode": "Incremental",
