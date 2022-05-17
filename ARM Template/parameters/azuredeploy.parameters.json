@@ -18,6 +18,15 @@
         "storageAccounts_synapsewsw_name": {
             "value": "synapsewsw"
         },
+        "workspaces_working_software_name": {
+            "value": "working-software"
+        
+        },
+        "storageAccounts_workingswsynapse_name": {
+            "value": "workingswsynapse"
+       
+        },
+        
         "github_account_name": {
             "value": "git-pranayshah"
         },

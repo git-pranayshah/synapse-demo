@@ -13,15 +13,12 @@
         },
 
         "workspaces_working_software_name": {
-            "defaultValue": "working-software",
             "type": "String"
         },
         "storageAccounts_synapsewsw_name": {
-            "defaultValue": "synapsewsw",
             "type": "String"
         },
         "storageAccounts_workingswsynapse_name": {
-            "defaultValue": "workingswsynapse",
             "type": "String"
         },
         "servers_sql_db_awd_login_user": {
