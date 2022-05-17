@@ -1,5 +1,5 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         
@@ -32,7 +32,7 @@
             "defaultValue": "",
             "type": "securestring"
         }, 
-        
+
         "vulnerabilityAssessments_Default_storageContainerPath": {
             "type": "SecureString"
         },
