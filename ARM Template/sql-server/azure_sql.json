@@ -61,7 +61,8 @@
                 "readScale": "Disabled",
                 "requestedBackupStorageRedundancy": "local",
                 "isLedgerOn": false,
-                "sampleName": "AdventureWorksLT"
+                "sampleName": "AdventureWorksLT",
+                "AllowAllAzureServices": true
             }
         }
     ]
