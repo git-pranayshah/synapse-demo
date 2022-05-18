@@ -23,7 +23,9 @@
             "value": "swstorage"
        
         },
-        
+        "managedResourceGroupName":{
+            "value": "swstorage-mrg"
+        },
         "github_account_name": {
             "value": "git-pranayshah"
         },
