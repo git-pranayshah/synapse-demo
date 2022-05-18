@@ -1,29 +1,35 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        
-    },
-    "functions": [],
-    "variables": {},
-    "resources": [
-       
-              {
-                  "type": "Microsoft.Resources/deploymentScripts",
-                  "apiVersion": "2020-10-01",
-                  "name": "runPowerShellInlineWithOutput",
-                  "location": "[resourceGroup().location]",
-                  "kind": "AzurePowerShell",
-                  "properties": {
-                    "azPowerShellVersion": "6.4",
-                    "scriptContent": "",
-                    "arguments": "[concat('-name', ' ', parameters('name'))]",
-                    "timeout": "PT1H",
-                    "cleanupPreference": "OnSuccess",
-                    "retentionInterval": "P1D"
-                  }
-              }
-      ],
-      "outputs": {
-      }
-    }
+	"name": "AzureSqlDatabase1",
+	"type": "Microsoft.Synapse/workspaces/linkedservices",
+    "apiVersion": "2020-12-01",
+	"properties": {
+		"parameters": {
+			"server_name": {
+				"type": "string",
+				"defaultValue": "sampledb42nwwkcdqytqi"
+			},
+			"servers_sample_db_server_mas_name": {
+				"type": "string",
+				"defaultValue": "master"
+			},
+			"servers_sql_db_awd_login_user": {
+				"type": "string",
+				"defaultValue": "sql-admin"
+			},
+			"servers_sql_db_awd_login_password": {
+				"type": "securestring",
+				"defaultValue": "Passw@rd2424"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=@{linkedService().server_name}.database.windows.net;initial catalog=@{linkedService().servers_sample_db_server_mas_name};user id=@{linkedService().servers_sql_db_awd_login_user}",
+			"password": "@{linkedService().servers_sql_db_awd_login_password}"
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
