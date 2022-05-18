@@ -11,6 +11,9 @@
         "storageAccounts_workingswsynapse_name": {
             "type": "String"
         },
+        "servers_sql_db_awd_login_user":{
+            "type": "string"
+        },
         "github_account_name": {
             "type": "String"
         },

@@ -78,6 +78,9 @@
                   "managedResourceGroupName":{
                       "value": "swstorage-mrg"
                   },
+                  "servers_sql_db_awd_login_user": {
+                    "value": "[parameters('servers_sql_db_awd_login_user')]"
+                  },
                   "github_account_name": {
                       "value": "[parameters('github_account_name')]"
                   },
