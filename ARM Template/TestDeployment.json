@@ -11,6 +11,10 @@
             "apiVersion": "2020-12-01",
             "properties": {
                 "parameters": {
+                    "workspaces_working_software_name": {
+                        "type": "string",
+                        "defaultValue": "swsynpse"
+                      },
                     "server_name": {
                         "type": "string",
                         "defaultValue": "sampledb42nwwkcdqytqi"
