@@ -13,32 +13,8 @@
         },
         "servers_sql_db_awd_login_password": {
             "type": "securestring"
-        },
-  
-   
-
-        "workspaces_working_software_name": {
-            "type": "String"
-        },
-        "managedResourceGroupName":{
-            "type": "String"
-        },
-        "storageAccounts_workingswsynapse_name": {
-            "type": "String"
-        },
-     
-        "github_account_name": {
-            "type": "String"
-        },
-        "github_branch": {
-            "type": "String"
-        },
-        "github_repo": {
-            "type": "String"
-        },
-        "github_rootfolder": {
-            "type": "String"
         }
+  
     },
     "variables": {},
     "resources": [

@@ -2,26 +2,11 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "subscription_id": {
-            "value": "f39588f8-a5eb-47fc-8605-68dd157901bd"
-        },
-        "servers_sample_db_server_mas_name" : {
-            "value": "samplesqldb"
-        },
-        "servers_sql_db_awd_login_user": {
-            "value": "sql-admin"
-        },
-
-        "servers_sql_db_awd_login_password": {
-            "value": "Passw@rd12"
-        },
         "workspaces_working_software_name": {
             "value": "swsynpse"
-        
         },
         "storageAccounts_workingswsynapse_name": {
             "value": "swstorage"
-       
         },
         "managedResourceGroupName":{
             "value": "swstorage-mrg"
@@ -37,9 +22,6 @@
         },
         "github_rootfolder": {
             "value": "synapse"
-        },
-        "client_ip":{
-            "value": "78.18.13.34"
         }
     }
 }
