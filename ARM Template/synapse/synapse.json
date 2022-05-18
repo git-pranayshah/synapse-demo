@@ -35,6 +35,9 @@
         },
         "github_rootfolder": {
             "type": "String"
+        },
+        "client_ip":{
+            "type": "String" 
         }
     },
     "variables": {},
@@ -132,6 +135,19 @@
             "properties": {
                 "startIpAddress": "0.0.0.0",
                 "endIpAddress": "0.0.0.0",
+                "AllowAllAzureServices": true
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/firewallRules",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '/client_ip')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces', concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)))]"
+            ],
+            "properties": {
+                "startIpAddress": "[parameters('client_ip')]",
+                "endIpAddress": "[parameters('client_ip')]",
                 "AllowAllAzureServices": true
             }
         },

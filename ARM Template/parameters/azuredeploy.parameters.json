@@ -37,6 +37,9 @@
         },
         "github_rootfolder": {
             "value": "synapse"
+        },
+        "client_ip":{
+            "value": "78.18.13.34"
         }
     }
 }
