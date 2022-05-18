@@ -2,14 +2,8 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "servers_sample_db_server_mas_name" : {
-            "value": "[parameters('servers_sample_db_server_mas_name')]"
-        },
         "servers_sql_db_awd_login_user": {
-            "value": "[parameters('servers_sql_db_awd_login_user')]"
-        },
-        "servers_sql_db_awd_login_password": {
-            "value": "[parameters('servers_sql_db_awd_login_password')]"
+            "value": "sql-admin"
         }
     }
 }

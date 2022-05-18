@@ -3,13 +3,15 @@
     "contentVersion": "1.0.0.0",
     "parameters":{
         "servers_sample_db_server_mas_name": {
-            "type": "String"
+            "type": "String",
+            "value": "[parameters('servers_sample_db_server_mas_name')]"
         },
         "servers_sql_db_awd_login_user": {
             "type": "String"
         },
         "servers_sql_db_awd_login_password": {
-            "type": "securestring"
+            "type": "securestring",
+            "value": "[parameters('servers_sql_db_awd_login_password')]"
         }
     },
     "variables": {},
