@@ -1,5 +1,5 @@
 {
-	"name": "Customer_Table",
+	"name": "01 Customer_Table",
 	"properties": {
 		"content": {
 			"query": "CREATE TABLE [Customer]  (\n\t[CustomerID] [int] IDENTITY(1,1) NOT NULL,\n\t[NameStyle] [nvarchar](128) NOT NULL,\n\t[Title] [nvarchar](8) NULL,\n\t[FirstName] [nvarchar](128) NOT NULL,\n\t[MiddleName] [nvarchar](128) NULL,\n\t[LastName] [nvarchar](128) NOT NULL,\n\t[Suffix] [nvarchar](10) NULL,\n\t[CompanyName] [nvarchar](128) NULL,\n\t[SalesPerson] [nvarchar](256) NULL,\n\t[EmailAddress] [nvarchar](50) NULL,\n\t[Phone] [nvarchar](128) NULL,\n\t[PasswordHash] [varchar](128) NOT NULL,\n\t[PasswordSalt] [varchar](10) NOT NULL,\n\t[rowguid] [uniqueidentifier] NOT NULL,\n\t[ModifiedDate] [datetime] NOT NULL\n) \nGO\n",
