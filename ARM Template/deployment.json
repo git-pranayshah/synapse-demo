@@ -6,10 +6,6 @@
           "type": "String",
           "defaultValue": "test"
       },
-      "servers_sample_db_server_mas_name" : {
-          "type": "String",
-          "defaultValue": "samplesqldb"
-      },
       "servers_sql_db_awd_login_user": {
           "type": "String",
           "defaultValue": "sql-admin"
@@ -34,8 +30,16 @@
             "mode": "Incremental",
             "templateLink": {
               "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/sql-server/azure_sql.json"            },
-            "parametersLink": {
-                  "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/parameters/azure_sql.parameters.json"
+            "parameters": {
+              "servers_sample_db_server_mas_name": {
+                "value": "sampledb"
+              },
+                "servers_sql_db_awd_login_user": {
+                  "value": "[parameters('servers_sql_db_awd_login_user')]"
+              },
+                "servers_sql_db_awd_login_password": {
+                  "value": "[parameters('servers_sql_db_awd_login_password')]"
+              }
             }
           }
       },
