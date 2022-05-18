@@ -17,7 +17,23 @@
       "client_ip":{
           "type": "String" ,
           "defaultValue": "78.18.13.34"
-      }  
+      }, 
+      "github_account_name": {
+          "type": "String",
+          "defaultValue": "git-pranayshah"
+      },
+      "github_branch": {
+          "type": "String",
+          "defaultValue": "dev"
+      },
+      "github_repo": {
+          "type": "String",
+          "defaultValue": "synapse-demo"
+      },
+      "github_rootfolder": {
+          "type": "String",
+          "defaultValue": "synapse"
+      }
   },
   "functions": [],
   "variables": {},
@@ -52,8 +68,28 @@
               "templateLink": {
                 "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/synapse/synapse.json"           
               },
-                "parametersLink": {
-                  "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/parameters/synapse.parameters.json"
+                "parameters": {
+                  "workspaces_working_software_name": {
+                    "value": "swsynpse"
+                  },
+                  "storageAccounts_workingswsynapse_name": {
+                      "value": "swstorage"
+                  },
+                  "managedResourceGroupName":{
+                      "value": "swstorage-mrg"
+                  },
+                  "github_account_name": {
+                      "value": "[parameters('github_account_name')]"
+                  },
+                  "github_branch": {
+                      "value": "[parameters('github_branch')]"
+                  },
+                  "github_repo": {
+                      "value": "[parameters('github_repo')]"
+                  },
+                  "github_rootfolder": {
+                      "value": "[parameters('github_rootfolder')]"
+                  }
                 }
               }
             }
