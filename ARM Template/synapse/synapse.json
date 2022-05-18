@@ -196,7 +196,7 @@
             }
         },
         {
-            "name": "TemplateDeployment",
+            "name":"[concat(concat(parameters('storageAccounts_workingswsynapse_name'), uniqueString(resourceGroup().id)), '/TemplateDeployment')]", 
             "apiVersion": "2021-09-01",
             "type": "Microsoft.Synapse/workspaces/linkedservices",
             "dependsOn": [
