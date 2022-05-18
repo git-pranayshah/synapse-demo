@@ -22,9 +22,6 @@
         },
         "github_rootfolder": {
             "type": "String"
-        },
-        "client_ip":{
-            "type": "String" 
         }
     },
     "variables": {},
