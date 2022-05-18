@@ -1,7 +1,45 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": {},
+  "parameters": {
+    "subscription_id": {
+      "type": "String"
+  },
+  "servers_sample_db_server_mas_name" : {
+      "type": "String"
+  },
+  "servers_sql_db_awd_login_password": {
+      "type": "String"
+  },
+
+  "workspaces_working_software_name": {
+      "type": "String"
+  },
+  "managedResourceGroupName":{
+      "type": "String"
+  },
+  "storageAccounts_workingswsynapse_name": {
+      "type": "String"
+  },
+  "servers_sql_db_awd_login_user": {
+      "type": "String"
+  },
+  "github_account_name": {
+      "type": "String"
+  },
+  "github_branch": {
+      "type": "String"
+  },
+  "github_repo": {
+      "type": "String"
+  },
+  "github_rootfolder": {
+      "type": "String"
+  },
+  "client_ip":{
+      "type": "String" 
+  }
+  },
   "functions": [],
   "variables": {},
   "resources": [
