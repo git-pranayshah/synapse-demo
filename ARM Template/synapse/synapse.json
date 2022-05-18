@@ -14,6 +14,9 @@
         "servers_sql_db_awd_login_user":{
             "type": "string"
         },
+        "client_ip": {
+            "type": "String"
+        },
         "github_account_name": {
             "type": "String"
         },
@@ -105,13 +108,19 @@
                     "type": "WorkspaceGitHubConfiguration"
                 },
                 "publicNetworkAccess": "Enabled",
-                "cspWorkspaceAdminProperties": {
-                    "initialWorkspaceAdminObjectId": "d7439f65-a2d4-49d9-b774-5f61ef72fd1d"
-                },
                 "azureADOnlyAuthentication": false,
                 "trustedServiceBypassEnabled": false
             }
         },
+        {
+            "type": "Microsoft.Synapse/workspaces/administrators",
+            "apiVersion": "2021-06-01",
+            "name": "activeDirectory",
+            "properties": {
+              "administratorType": "Microsoft.Synapse/workspaces/administrators",
+              "login": "shahpranay@microsoft.com"
+            }
+          },
         {
             "type": "Microsoft.Synapse/workspaces/firewallRules",
             "apiVersion": "2021-06-01",

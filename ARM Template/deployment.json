@@ -81,6 +81,9 @@
                   "servers_sql_db_awd_login_user": {
                     "value": "[parameters('servers_sql_db_awd_login_user')]"
                   },
+                  "client_ip": {
+                    "value": "[parameters('client_ip')]"
+                  },
                   "github_account_name": {
                       "value": "[parameters('github_account_name')]"
                   },
