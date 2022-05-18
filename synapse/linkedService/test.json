@@ -3,7 +3,7 @@
 	"type": "Microsoft.Synapse/workspaces/linkedservices",
 	"properties": {
 		"parametersLinks": {
-			"uri": 
+			"uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/parameters/azuresql.parameters.json"
 		},
 		"annotations": [],
 		"type": "AzureSqlDatabase",
