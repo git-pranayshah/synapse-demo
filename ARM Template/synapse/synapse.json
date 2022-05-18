@@ -125,12 +125,11 @@
         {
             "type": "Microsoft.Synapse/workspaces/firewallRules",
             "apiVersion": "2021-06-01",
-            "name": "[concat(concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '/allowAll')]",
+            "name": "AllowAllWindowsAzureIps",
             "dependsOn": [
                 "[resourceId('Microsoft.Synapse/workspaces', concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)))]"
             ],
             "properties": {
-                "AllowAllAzureServices": true,
                 "startIpAddress": "0.0.0.0",
                 "endIpAddress": "0.0.0.0",
                 "AllowAllAzureServices": true
@@ -191,24 +190,6 @@
                     "enabled": false
                 }
                 
-            }
-        },
-
-
-
-        {
-            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
-            "apiVersion": "2021-09-01",
-            "name": "[concat(concat(parameters('storageAccounts_workingswsynapse_name'), uniqueString(resourceGroup().id)), '/default/synapse')]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts/blobServices', concat(parameters('storageAccounts_workingswsynapse_name'), uniqueString(resourceGroup().id)), 'default')]",
-                "[resourceId('Microsoft.Storage/storageAccounts', concat(parameters('storageAccounts_workingswsynapse_name'), uniqueString(resourceGroup().id)))]"
-            ],
-            "properties": {
-        
-                "defaultEncryptionScope": "$account-encryption-key",
-                "denyEncryptionScopeOverride": false,
-                "publicAccess": "None"
             }
         }
     ]
