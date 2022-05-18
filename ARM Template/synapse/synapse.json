@@ -125,7 +125,7 @@
         {
             "type": "Microsoft.Synapse/workspaces/firewallRules",
             "apiVersion": "2021-06-01",
-            "name": "AllowAllWindowsAzureIps",
+            "name": "[concat(concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '/AllowAllWindowsAzureIps')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Synapse/workspaces', concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)))]"
             ],
