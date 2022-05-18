@@ -9,7 +9,7 @@
             "type": "String"
         },
         "servers_sql_db_awd_login_password": {
-            "type": "String"
+            "type": "securestring"
         },
 
         "workspaces_working_software_name": {
