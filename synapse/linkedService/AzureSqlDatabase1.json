@@ -3,24 +3,28 @@
 	"type": "Microsoft.Synapse/workspaces/linkedservices",
 	"properties": {
 		"parameters": {
+			"server_name": {
+				"type": "string",
+				"defaultValue": "sampledb42nwwkcdqytqi"
+			},
 			"servers_sample_db_server_mas_name": {
-				"type": "securestring",
-				"defaultValue": "Passw@rd2424"
+				"type": "string",
+				"defaultValue": "master"
 			},
 			"servers_sql_db_awd_login_user": {
 				"type": "string",
 				"defaultValue": "sql-admin"
 			},
 			"servers_sql_db_awd_login_password": {
-				"type": "string",
+				"type": "securestring",
 				"defaultValue": "Passw@rd2424"
 			}
 		},
 		"annotations": [],
 		"type": "AzureSqlDatabase",
 		"typeProperties": {
-			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=sampledb42nwwkcdqytqi.database.windows.net;initial catalog=master;user id=sql-admin",
-			"password": "parameters('servers_sql_db_awd_login_password')"
+			"connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=@{linkedService().server_name}.database.windows.net;initial catalog=@{linkedService().servers_sample_db_server_mas_name};user id=@{linkedService().servers_sql_db_awd_login_user}",
+			"password": "@{linkedService().servers_sql_db_awd_login_password}"
 		},
 		"connectVia": {
 			"referenceName": "AutoResolveIntegrationRuntime",
