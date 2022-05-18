@@ -74,6 +74,7 @@
                     },
                     "keySource": "Microsoft.Storage"
                 },
+                "isVersioningEnabled": false,
                 "accessTier": "Hot"
             }
         },
@@ -186,6 +187,7 @@
                     "allowPermanentDelete": false,
                     "enabled": false
                 }
+                
             }
         },
 
