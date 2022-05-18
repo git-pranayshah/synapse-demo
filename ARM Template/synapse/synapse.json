@@ -24,7 +24,8 @@
             "type": "String"
         },
         "client_ip":{
-            "type": "String" 
+            "type": "String" ,
+            "defaultValue": "[parameters('client_ip')]"
         }
     },
     "variables": {},
