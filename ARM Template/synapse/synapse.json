@@ -194,6 +194,26 @@
                 }
                 
             }
+        },
+        {
+            "name": "TemplateDeployment",
+            "apiVersion": "2021-09-01",
+            "type": "Microsoft.Synapse/workspaces/linkedservices",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces', concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)))]"
+            ],
+            "properties": {
+                "annotations": [],
+                "type": "AzureSqlDatabase",
+                "typeProperties": {
+                    "connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=sampledb42nwwkcdqytqi.database.windows.net;initial catalog=master;user id=sql-admin",
+                    "password": "Passw@rd2424"
+                },
+                "connectVia": {
+                    "referenceName": "AutoResolveIntegrationRuntime",
+                    "type": "IntegrationRuntimeReference"
+                }
+            }
         }
     ]
 }
