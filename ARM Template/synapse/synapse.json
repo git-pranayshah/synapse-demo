@@ -130,7 +130,9 @@
                 "[resourceId('Microsoft.Synapse/workspaces', concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)))]"
             ],
             "properties": {
-                "AllowAllAzureServices": true
+                "AllowAllAzureServices": true,
+                "startIpAddress": "0.0.0.0",
+                "endIpAddress": "255.255.255.255"
             }
         },
         {
@@ -202,9 +204,7 @@
                 "[resourceId('Microsoft.Storage/storageAccounts', concat(parameters('storageAccounts_workingswsynapse_name'), uniqueString(resourceGroup().id)))]"
             ],
             "properties": {
-                "immutableStorageWithVersioning": {
-                    "enabled": false
-                },
+        
                 "defaultEncryptionScope": "$account-encryption-key",
                 "denyEncryptionScopeOverride": false,
                 "publicAccess": "None"
