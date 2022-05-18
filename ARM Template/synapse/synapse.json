@@ -196,13 +196,14 @@
             }
         },
         {
-            "name":"[concat(concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '/TemplateDeployment')]", 
-            "apiVersion": "2021-09-01",
             "type": "Microsoft.Synapse/workspaces/linkedservices",
+            "apiVersion": "2021-06-01",
+            "name":"[concat(concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '/TemplateDeployment')]", 
             "dependsOn": [
                 "[resourceId('Microsoft.Synapse/workspaces', concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)))]"
             ],
             "properties": {
+                "mode": "Incremental",
                 "annotations": [],
                 "type": "AzureSqlDatabase",
                 "typeProperties": {
