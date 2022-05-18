@@ -116,6 +116,9 @@
             "type": "Microsoft.Synapse/workspaces/administrators",
             "apiVersion": "2021-06-01",
             "name":  "[concat(concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '/activeDirectory')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces', concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)))]"
+            ],
             "properties": {
               "login": "shahpranay@microsoft.com"
             }
