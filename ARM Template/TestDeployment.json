@@ -5,7 +5,8 @@
     "variables": {},
     "resources": [
        {
-            "name": "AzureSqlDatabase1",
+            "name":"[concat(concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '/TemplateDeployment')]", 
+         
             "type": "Microsoft.Synapse/workspaces/linkedservices",
             "apiVersion": "2020-12-01",
             "properties": {
@@ -30,8 +31,8 @@
                 "annotations": [],
                 "type": "AzureSqlDatabase",
                 "typeProperties": {
-                    "connectionString": "integrated security=False;encrypt=True;connection timeout=30;data source=@{linkedService().server_name}.database.windows.net;initial catalog=@{linkedService().servers_sample_db_server_mas_name};user id=@{linkedService().servers_sql_db_awd_login_user}",
-                    "password": "@{linkedService().servers_sql_db_awd_login_password}"
+                    "connectionString": "[concat(concat(concat(concat(concat('integrated security=False;encrypt=True;connection timeout=30;data source=', parameters('server_name')), '.database.windows.net;initial catalog='),  parameters('servers_sample_db_server_mas_name')), ';user id='), parameters('servers_sql_db_awd_login_user'))]",
+                    "password": "parameters('servers_sql_db_awd_login_password')"
                 },
                 "connectVia": {
                     "referenceName": "AutoResolveIntegrationRuntime",
