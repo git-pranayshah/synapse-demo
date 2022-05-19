@@ -98,21 +98,6 @@
                   }
                 }
               }
-            },
-            {
-                "type": "Microsoft.Resources/deploymentScripts",
-                "apiVersion": "2020-10-01",
-                "name": "runPowerShellInlineWithOutput",
-                "location": "[resourceGroup().location]",
-                "kind": "AzurePowerShell",
-                "properties": {
-                  "azPowerShellVersion": "6.4",
-                  "scriptContent": "",
-                  "arguments": "[concat('-name', ' ', parameters('name'))]",
-                  "timeout": "PT1H",
-                  "cleanupPreference": "OnSuccess",
-                  "retentionInterval": "P1D"
-                }
             }
     ],
     "outputs": {

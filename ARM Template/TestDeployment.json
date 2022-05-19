@@ -32,6 +32,7 @@
                         "defaultValue": "Passw@rd2424"
                     }
                 },
+                
                 "annotations": [],
                 "type": "AzureSqlDatabase",
                 "typeProperties": {
