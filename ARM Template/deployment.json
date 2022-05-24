@@ -33,7 +33,19 @@
       "github_rootfolder": {
           "type": "String",
           "defaultValue": "synapse"
-      }
+      },
+      "vaults_synapse_metadata_name": {
+        "defaultValue": "synapse-metadata",
+        "type": "String"
+    },
+    "vaults_tenantid": {
+        "defaultValue": "[subscription().tenantId]",
+        "type": "String"
+    },
+    "vaults_objectid": {
+        "defaultValue": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities/read','shahpranay@microsoft.com'),'2019-01-01').Id]",
+        "type": "String"
+    }
   },
   "functions": [],
   "variables": {},
@@ -98,7 +110,33 @@
                   }
                 }
               }
+            },
+            {
+              "type": "Microsoft.Resources/deployments",
+              "apiVersion": "2021-04-01",
+                "name": "AzureSynapse",
+                "properties": {
+                  "mode": "Incremental",
+                    "templateLink": {
+                      "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/keyVault/keyvault.json"           
+                    },
+                      "parameters": {
+                        "vaults_synapse_metadata_name": {
+                          "defaultValue": "synapse-metadata",
+                          "type": "String"
+                      },
+                      "vaults_tenantid": {
+                          "defaultValue": "[subscription().tenantId]",
+                          "type": "String"
+                      },
+                      "vaults_objectid": {
+                          "defaultValue": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities/read','shahpranay@microsoft.com'),'2019-01-01').Id]",
+                          "type": "String"
+                      }
+                    }
+                 }
             }
+
     ],
     "outputs": {
     }
