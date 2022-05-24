@@ -31,7 +31,6 @@
                 "accessPolicies": [
                     {
                         "tenantId": "[parameters('vaults_tenantid')]",
-                        "objectId":  "[parameters('vaults_objectid')]",
                         "permissions": {
                             "keys": [
                                 "Get",
@@ -64,7 +63,6 @@
                     },
                     {
                         "tenantId": "[parameters('vaults_tenantid')]",
-                        "objectId":  "[parameters('vaults_objectid')]",
                         "permissions": {
                             "keys": [
                                 "Get",
