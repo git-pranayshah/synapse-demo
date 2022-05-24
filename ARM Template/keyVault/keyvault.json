@@ -3,15 +3,14 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "vaults_synapse_metadata_name": {
-            "defaultValue": "synapse-metadata",
+           
             "type": "String"
         },
         "vaults_tenantid": {
-            "defaultValue": "synapse-metadata",
             "type": "String"
         },
         "vaults_objectid": {
-            "defaultValue": "synapse-metadata",
+           
             "type": "String"
         }
     },
