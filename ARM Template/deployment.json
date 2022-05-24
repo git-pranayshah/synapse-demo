@@ -43,7 +43,7 @@
         "type": "String"
     },
     "vaults_objectid": {
-        "defaultValue": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities/read','shahpranay@microsoft.com'),'2019-01-01').Id]",
+        "defaultValue": "[reference(resourceId('Microsoft.Portal/usersettings/read','shahpranay@microsoft.com'),'2018-10-01').Id]",
         "type": "String"
     }
   },
