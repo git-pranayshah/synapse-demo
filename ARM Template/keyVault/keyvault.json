@@ -8,11 +8,8 @@
         },
         "vaults_tenantid": {
             "type": "String"
-        },
-        "vaults_objectid": {
-           
-            "type": "String"
         }
+       
     },
     "variables": {},
     "resources": [
