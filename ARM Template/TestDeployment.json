@@ -25,12 +25,10 @@
                   },
                     "parameters": {
                       "vaults_synapse_metadata_name": {
-                        "defaultValue": "synapse-metadata",
-                        "type": "String"
+                        "value": "[parameters('vaults_synapse_metadata_name')]"
                     },
                     "vaults_tenantid": {
-                        "defaultValue": "[subscription().tenantId]",
-                        "type": "String"
+                        "value": "[parameters('vaults_tenantid')]"
                     }
                     
                   }
