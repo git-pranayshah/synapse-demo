@@ -2,6 +2,10 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        
+        "userAssignedIdentities_name": {
+            "type": "tring"
+        },
         "vaults_synapse_metadata_name": {
             "type": "String"
         },
@@ -13,21 +17,33 @@
     "variables": {},
     "resources": [
         {
+    
+        
+            "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
+            "apiVersion": "2018-11-30",
+            "name": "[parameters('userAssignedIdentities_name')]",
+            "location": "[resourceGroup().location]"
+
+        },
+        {
             "type": "Microsoft.KeyVault/vaults",
             "apiVersion": "2021-11-01-preview",
             "name": "[parameters('vaults_synapse_metadata_name')]",
-            "location": "eastus",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_name')"
+            ],
             "properties": {
                 "sku": {
                     "family": "A",
                     "name": "Standard"
                 },
                 "tenantId": "[parameters('vaults_tenantid')]",
-                "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', 'p4pranaysshah@live.com'), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
+                "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', parameters('userAssignedIdentities_name')), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
                 "accessPolicies": [
                     {
                         "tenantId": "[parameters('vaults_tenantid')]",
-                        "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', 'p4pranaysshah@live.com'), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
+                        "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', parameters('userAssignedIdentities_name']), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
          
                         "permissions": {
                             "keys": [
