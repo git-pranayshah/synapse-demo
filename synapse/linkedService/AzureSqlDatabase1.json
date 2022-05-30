@@ -11,6 +11,10 @@
 					"type": "LinkedServiceReference"
 				},
 				"secretName": "AzureSQLDBConnection"
+			},
+			"credential": {
+				"referenceName": "Credential1",
+				"type": "CredentialReference"
 			}
 		},
 		"connectVia": {
