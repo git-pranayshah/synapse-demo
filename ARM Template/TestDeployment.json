@@ -28,8 +28,8 @@
                     "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/keyVault/keyvault.json"           
                   },
                     "parameters": {
-                      "userAssignedIdentities_name": {
-                        "value": "[parameters('userAssignedIdentities_name')]"
+                      "valuts_objectid": {
+                        "value":"[concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id))]"
                        },
                       "vaults_synapse_metadata_name": {
                         "value": "[parameters('vaults_synapse_metadata_name')]"

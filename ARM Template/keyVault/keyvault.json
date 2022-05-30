@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         
-        "userAssignedIdentities_name": {
+        "valuts_objectid": {
             "type": "String"
         },
         "vaults_synapse_metadata_name": {
@@ -39,11 +39,11 @@
                     "name": "Standard"
                 },
                 "tenantId": "[parameters('vaults_tenantid')]",
-                "objectId": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_name'))).principalId]",
+                "objectId": "[reference(resourceId('Microsoft.Synapse/workspaces', parameters('valuts_objectid')), '2018-06-01', 'Full').identity.principalId]",
                 "accessPolicies": [
                     {
                         "tenantId": "[parameters('vaults_tenantid')]",
-                        "objectId": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_name'))).principalId]",
+                        "objectId": "[reference(resourceId('Microsoft.Synapse/workspaces', parameters('valuts_objectid')), '2018-06-01', 'Full').identity.principalId]",
          
                         "permissions": {
                             "keys": [
@@ -77,7 +77,7 @@
                     },
                     {
                         "tenantId": "[parameters('vaults_tenantid')]",
-                        "objectId": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_name'))).principalId]",
+                        "objectId": "[reference(resourceId('Microsoft.Synapse/workspaces', parameters('valuts_objectid')), '2018-06-01', 'Full').identity.principalId]",
          
                         "permissions": {
                             "keys": [
@@ -137,7 +137,7 @@
         {
             "type": "Microsoft.KeyVault/vaults/secrets",
             "apiVersion": "2021-11-01-preview",
-            "name": "[concat(parameters('vaults_synapse_metadata_name'), '/AzureSQLDBConnection')]",
+            "name": "[concat(concat(parameters('vaults_synapse_metadata_name'), uniqueString(resourceGroup().id)), '/AzureSQLDBConnection')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.KeyVault/vaults', concat(parameters('vaults_synapse_metadata_name'), uniqueString(resourceGroup().id)))]"
