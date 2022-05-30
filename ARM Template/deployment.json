@@ -41,10 +41,6 @@
     "vaults_tenantid": {
         "defaultValue": "[subscription().tenantId]",
         "type": "String"
-    },
-    "vaults_objectid": {
-        "defaultValue": "[reference(resourceId('Microsoft.Portal/usersettings/read','shahpranay@microsoft.com'),'2018-10-01').Id]",
-        "type": "String"
     }
   },
   "functions": [],
