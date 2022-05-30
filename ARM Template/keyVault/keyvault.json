@@ -31,7 +31,7 @@
             "name": "[parameters('vaults_synapse_metadata_name')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_name')]"
+                "[resourceId(Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_name'))]"
             ],
             "properties": {
                 "sku": {
