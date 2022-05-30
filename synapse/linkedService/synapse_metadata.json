@@ -4,7 +4,11 @@
 		"annotations": [],
 		"type": "AzureKeyVault",
 		"typeProperties": {
-			"baseUrl": "https://testxwc6ucf4jlaf4.vault.azure.net/"
+			"baseUrl": "https://testxwc6ucf4jlaf4.vault.azure.net/",
+			"credential": {
+				"referenceName": "Credential1",
+				"type": "CredentialReference"
+			}
 		}
 	}
 }
