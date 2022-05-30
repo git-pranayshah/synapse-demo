@@ -3,10 +3,11 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "userAssignedIdentities_name": {
+        "defaultValue": "test",
         "type": "String"
        },
         "vaults_synapse_metadata_name": {
-            "defaultValue": "synapse-metadata",
+            "defaultValue": "test",
             "type": "String"
         },
         "vaults_tenantid": {
