@@ -6,7 +6,7 @@
 		"typeProperties": {
 			"baseUrl": "https://testxwc6ucf4jlaf4.vault.azure.net/",
 			"credential": {
-				"referenceName": "Credential1",
+				"referenceName": "Credential2",
 				"type": "CredentialReference"
 			}
 		}
