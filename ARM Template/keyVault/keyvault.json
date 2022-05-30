@@ -28,7 +28,7 @@
         {
             "type": "Microsoft.KeyVault/vaults",
             "apiVersion": "2021-11-01-preview",
-            "name": "[parameters('vaults_synapse_metadata_name')]",
+            "name": "[concat(parameters('vaults_synapse_metadata_name'), uniqueString(resourceGroup().id))]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_name'))]"
@@ -140,7 +140,7 @@
             "name": "[concat(parameters('vaults_synapse_metadata_name'), '/AzureSQLDBConnection')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[resourceId('Microsoft.KeyVault/vaults', parameters('vaults_synapse_metadata_name'))]"
+                "[resourceId('Microsoft.KeyVault/vaults', concat(parameters('vaults_synapse_metadata_name'), uniqueString(resourceGroup().id)))]"
             ],
             "properties": {
                 "attributes": {
