@@ -77,6 +77,8 @@
                     },
                     {
                         "tenantId": "[parameters('vaults_tenantid')]",
+                        "objectId": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_name'))).principalId]",
+         
                         "permissions": {
                             "keys": [
                                 "Get",
