@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "AzureKeyVault",
 		"typeProperties": {
-			"baseUrl": "https://synapse-metadata.vault.azure.net/"
+			"baseUrl": "https://testxwc6ucf4jlaf4.vault.azure.net/"
 		}
 	}
 }
