@@ -13,7 +13,7 @@
 				"secretName": "AzureSQLDBConnection"
 			},
 			"credential": {
-				"referenceName": "Credential1",
+				"referenceName": "Credential2",
 				"type": "CredentialReference"
 			}
 		},
