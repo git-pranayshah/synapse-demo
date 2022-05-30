@@ -23,11 +23,11 @@
                     "name": "Standard"
                 },
                 "tenantId": "[parameters('vaults_tenantid')]",
-                "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', 'shahpranay@microsoft.com'), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
+                "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', 'p4pranaysshah@live.com'), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
                 "accessPolicies": [
                     {
                         "tenantId": "[parameters('vaults_tenantid')]",
-                        "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', 'shahpranay@microsoft.com'), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
+                        "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', 'p4pranaysshah@live.com'), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
          
                         "permissions": {
                             "keys": [
