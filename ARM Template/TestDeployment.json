@@ -13,6 +13,10 @@
         "vaults_tenantid": {
             "defaultValue": "[subscription().tenantId]",
             "type": "String"
+        },
+        "workspaces_working_software_name": {
+          "defaultValue": "swsynpse",
+          "type": "String"
         }
     },
     "functions": [],
