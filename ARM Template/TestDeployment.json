@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
       "userAssignedIdentities_name": {
-        "defaultValue": "test2",
+        "defaultValue": "test3",
         "type": "String"
        },
         "vaults_synapse_metadata_name": {
