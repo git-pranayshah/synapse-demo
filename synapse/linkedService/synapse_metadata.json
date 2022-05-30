@@ -4,11 +4,7 @@
 		"annotations": [],
 		"type": "AzureKeyVault",
 		"typeProperties": {
-			"baseUrl": "https://ewrwer32.vault.azure.net/",
-			"credential": {
-				"referenceName": "Credential2",
-				"type": "CredentialReference"
-			}
+			"baseUrl": "https://ewrwer32.vault.azure.net/"
 		}
 	}
 }
