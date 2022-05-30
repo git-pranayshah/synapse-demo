@@ -23,7 +23,7 @@
             "apiVersion": "2018-11-30",
             "name": "[parameters('userAssignedIdentities_name')]",
             "location": "[resourceGroup().location]",
-            "properties": {}
+            "properties": {} 
         },
         {
             "type": "Microsoft.KeyVault/vaults",
@@ -39,11 +39,11 @@
                     "name": "Standard"
                 },
                 "tenantId": "[parameters('vaults_tenantid')]",
-                "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', parameters('userAssignedIdentities_name')), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
+                "objectId": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_name')).principalId]",
                 "accessPolicies": [
                     {
                         "tenantId": "[parameters('vaults_tenantid')]",
-                        "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', parameters('userAssignedIdentities_name')), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
+                        "objectId": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_name')).principalId]",
          
                         "permissions": {
                             "keys": [
