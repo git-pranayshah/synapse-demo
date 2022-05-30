@@ -22,8 +22,8 @@
             "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
             "apiVersion": "2018-11-30",
             "name": "[parameters('userAssignedIdentities_name')]",
-            "location": "[resourceGroup().location]"
-
+            "location": "[resourceGroup().location]",
+            "properties": {}
         },
         {
             "type": "Microsoft.KeyVault/vaults",
