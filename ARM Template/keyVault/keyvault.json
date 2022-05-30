@@ -27,6 +27,8 @@
                 "accessPolicies": [
                     {
                         "tenantId": "[parameters('vaults_tenantid')]",
+                        "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', 'shahpranay@microsoft.com'), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
+         
                         "permissions": {
                             "keys": [
                                 "Get",
