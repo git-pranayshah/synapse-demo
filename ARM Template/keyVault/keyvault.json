@@ -4,7 +4,7 @@
     "parameters": {
         
         "userAssignedIdentities_name": {
-            "type": "tring"
+            "type": "String"
         },
         "vaults_synapse_metadata_name": {
             "type": "String"
