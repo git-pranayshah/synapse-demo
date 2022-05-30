@@ -39,11 +39,11 @@
                     "name": "Standard"
                 },
                 "tenantId": "[parameters('vaults_tenantid')]",
-                "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', parameters('userAssignedIdentities_name')), '/providers/Microsoft.ManagedIdentity/Identities/default', '2015-08-31-PREVIEW').principalId]",
+                "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', parameters('userAssignedIdentities_name')), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
                 "accessPolicies": [
                     {
                         "tenantId": "[parameters('vaults_tenantid')]",
-                        "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', parameters('userAssignedIdentities_name')), '/providers/Microsoft.ManagedIdentity/Identities/default', '2015-08-31-PREVIEW').principalId]",
+                        "objectId": "[reference(concat(resourceId('Microsoft.Web/sites', parameters('userAssignedIdentities_name')), '/providers/Microsoft.ManagedIdentity/Identities/default'), '2015-08-31-PREVIEW').principalId]",
          
                         "permissions": {
                             "keys": [
