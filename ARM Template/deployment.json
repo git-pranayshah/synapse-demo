@@ -113,33 +113,35 @@
                       "value": "[parameters('github_rootfolder')]"
                   }
                 }
-              }
-            },
-            {
-              "type": "Microsoft.Resources/deployments",
-              "apiVersion": "2021-04-01",
-                "name": "keyValt",
-                "dependsOn": [
-                  "[resourceId('Microsoft.Resources/deployments', 'AzureSynapse')]"
-              ],
-                "properties": {
-                  "mode": "Incremental",
-                    "templateLink": {
-                      "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/keyVault/keyvault.json"           
-                    },
-                      "parameters": {
-                        "valuts_objectid": {
-                          "value":"[reference(resourceId('Microsoft.Synapse/workspaces',concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id))), '2021-06-01', 'Full').identity.principalId]"
-                         },
-                        "vaults_synapse_metadata_name": {
-                          "value": "[parameters('vaults_synapse_metadata_name')]"
-                      },
-                        "vaults_tenantid": {
-                          "value": "[parameters('vaults_tenantid')]"
-                      }
-                      
-                    }
-                 }
+              },
+              "resources": [
+                {
+                  "type": "Microsoft.Resources/deployments",
+                  "apiVersion": "2021-04-01",
+                    "name": "keyValt",
+                    "dependsOn": [
+                      "[resourceId('Microsoft.Resources/deployments', 'AzureSynapse')]"
+                  ],
+                    "properties": {
+                      "mode": "Incremental",
+                        "templateLink": {
+                          "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/keyVault/keyvault.json"           
+                        },
+                          "parameters": {
+                            "valuts_objectid": {
+                              "value":"[reference(resourceId('Microsoft.Synapse/workspaces',concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id))), '2021-06-01', 'Full').identity.principalId]"
+                             },
+                            "vaults_synapse_metadata_name": {
+                              "value": "[parameters('vaults_synapse_metadata_name')]"
+                          },
+                            "vaults_tenantid": {
+                              "value": "[parameters('vaults_tenantid')]"
+                          }
+                          
+                        }
+                     }
+                }
+              ]
             }
 
     ],
