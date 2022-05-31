@@ -129,7 +129,8 @@
                       },
                         "parameters": {
                           "valuts_objectid": {
-                            "value":"[parameters('valuts_synaps_objectid')"                          },
+                            "value":"[parameters('valuts_synaps_objectid')]"                          
+                          },
                           "vaults_synapse_metadata_name": {
                             "value": "[parameters('vaults_synapse_metadata_name')]"
                         },
