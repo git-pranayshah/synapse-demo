@@ -129,8 +129,7 @@
                       },
                         "parameters": {
                           "valuts_objectid": {
-                            "value":""
-                          },
+                            "value":"[parameters('valuts_synaps_objectid')"                          },
                           "vaults_synapse_metadata_name": {
                             "value": "[parameters('vaults_synapse_metadata_name')]"
                         },
@@ -146,6 +145,8 @@
 
     ],
     "outputs": {
-      
+      "valuts_synaps_objectid": {
+        "value":"[reference(resourceId('Microsoft.Synapse/workspaces',concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id))), '2021-06-01', 'Full').identity.principalId]"
+      }
     }
   }
