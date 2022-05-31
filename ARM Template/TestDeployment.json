@@ -33,7 +33,7 @@
                   },
                     "parameters": {
                       "valuts_objectid": {
-                        "value":"[concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id))]"
+                        "value":"[reference(resourceId('Microsoft.Synapse/workspaces',concat(parameters('storageAccounts_workingswsynapse_name'), uniqueString(resourceGroup().id))]), '2018-06-01', 'Full').identity.principalId]"
                        },
                       "vaults_synapse_metadata_name": {
                         "value": "[parameters('vaults_synapse_metadata_name')]"
