@@ -21,7 +21,7 @@
        
     },
     "variables": {
-        "vault_synapse_objectid" : "[reference(resourceId(parameters('workspaces_working_software_type'),concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id))), '2021-06-01', 'Full').identity.principalId]"
+        "vault_synapse_objectid" : ""
     },
     "resources": [
 
@@ -36,11 +36,11 @@
                     "name": "Standard"
                 },
                 "tenantId": "[parameters('vaults_tenantid')]",
-                "objectId": "[if(equal(parameters('valuts_objectid'),''),variables('vault_synapse_objectid'),parameters('valuts_objectid'))]",
+                "objectId": "[if(equal(parameters('valuts_objectid'),''),reference(resourceId(parameters('workspaces_working_software_type'),concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id))), '2021-06-01', 'Full').identity.principalId,parameters('valuts_objectid'))]",
                 "accessPolicies": [
                     {
                         "tenantId": "[parameters('vaults_tenantid')]",
-                        "objectId": "[if(equal(parameters('valuts_objectid'),''),variables('vault_synapse_objectid'),parameters('valuts_objectid'))]",
+                        "objectId": "[if(equal(parameters('valuts_objectid'),''),reference(resourceId(parameters('workspaces_working_software_type'),concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id))), '2021-06-01', 'Full').identity.principalId,parameters('valuts_objectid'))]",
          
                         "permissions": {
                             "keys": [
@@ -74,7 +74,7 @@
                     },
                     {
                         "tenantId": "[parameters('vaults_tenantid')]",
-                        "objectId": "[if(equal(parameters('valuts_objectid'),''),variables('vault_synapse_objectid'),parameters('valuts_objectid'))]",
+                        "objectId": "[if(equal(parameters('valuts_objectid'),''),reference(resourceId(parameters('workspaces_working_software_type'),concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id))), '2021-06-01', 'Full').identity.principalId,parameters('valuts_objectid'))]",
          
                         "permissions": {
                             "keys": [
