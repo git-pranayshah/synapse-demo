@@ -22,9 +22,6 @@
             "apiVersion": "2021-11-01-preview",
             "name": "[concat(parameters('vaults_synapse_metadata_name'), uniqueString(resourceGroup().id))]",
             "location": "[resourceGroup().location]",
-            "dependsOn": [
-                "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('userAssignedIdentities_name'))]"
-            ],
             "properties": {
                 "sku": {
                     "family": "A",
