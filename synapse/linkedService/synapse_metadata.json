@@ -4,7 +4,8 @@
 		"parameters": {
 			"baseurl": {
 				"type": "string",
-				"defaultValue": "sad"
+				"defaultValue": "[concat('https://',parameters('vaults_synapse_metadata_name'), uniqueString(resourceGroup().id),'.vault.azure.net/')]"
+				
 			}
 		},
 		"annotations": [],
