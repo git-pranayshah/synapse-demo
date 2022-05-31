@@ -35,7 +35,7 @@
           "defaultValue": "synapse"
       },
       "valuts_objectid": {
-        "defaultValue": "test3",
+        "defaultValue": "",
         "type": "String"
        },
         "vaults_synapse_metadata_name": {
