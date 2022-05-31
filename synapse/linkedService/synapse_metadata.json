@@ -3,7 +3,8 @@
 	"properties": {
 		"parameters": {
 			"baseurl": {
-				"type": "string"
+				"type": "string",
+				"value": "[concat(parameters('vaults_synapse_metadata_name'), uniqueString(resourceGroup().id))]"
 			}
 		},
 		"annotations": [],

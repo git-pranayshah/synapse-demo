@@ -39,10 +39,7 @@
         "defaultValue": "",
         "type": "String"
        },
-        "vaults_synapse_metadata_name": {
-            "defaultValue": "test",
-            "type": "String"
-        },
+        
         "vaults_tenantid": {
             "defaultValue": "[subscription().tenantId]",
             "type": "String"
@@ -53,7 +50,7 @@
         }
   },
   "functions": [],
-  "variables": { "servers_sample_db_server_mas_name": "sampledb"
+  "variables": { "servers_sample_db_server_mas_name": "sampledb","vaults_synapse_metadata_name":  "test"
    },
   "resources": [
      {
@@ -140,7 +137,7 @@
                                 "value":"Microsoft.Synapse/workspaces"
                               },
                                 "vaults_synapse_metadata_name": {
-                                  "value": "[parameters('vaults_synapse_metadata_name')]"
+                                  "value": "[variables('vaults_synapse_metadata_name')]"
                               },
                                 "vaults_tenantid": {
                                   "value": "[parameters('vaults_tenantid')]"
