@@ -3,7 +3,8 @@
 	"properties": {
 		"parameters": {
 			"baseurl": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "sad"
 			}
 		},
 		"annotations": [],
