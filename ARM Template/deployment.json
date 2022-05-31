@@ -6,6 +6,7 @@
           "type": "String",
           "defaultValue": "test"
       },
+     
       "servers_sql_db_awd_login_user": {
           "type": "String",
           "defaultValue": "sql-admin"
@@ -52,7 +53,8 @@
         }
   },
   "functions": [],
-  "variables": {},
+  "variables": { "servers_sample_db_server_mas_name": "sampledb"
+   },
   "resources": [
      {
         "type": "Microsoft.Resources/deployments",
@@ -64,7 +66,7 @@
               "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/sql-server/azure_sql.json"            },
             "parameters": {
               "servers_sample_db_server_mas_name": {
-                "value": "sampledb"
+                "value": "[variables('servers_sample_db_server_mas_name')]"
               },
                 "servers_sql_db_awd_login_user": {
                   "value": "[parameters('servers_sql_db_awd_login_user')]"
@@ -140,9 +142,15 @@
                                 "vaults_synapse_metadata_name": {
                                   "value": "[parameters('vaults_synapse_metadata_name')]"
                               },
-                          "vaults_tenantid": {
-                            "value": "[parameters('vaults_tenantid')]"
-                        }
+                                "vaults_tenantid": {
+                                  "value": "[parameters('vaults_tenantid')]"
+                              },
+                                "vaults_key":{
+                                  "value": "AzureSQLDBConnection"
+                              },
+                                "vaults_secrete":{
+                                    "value": "[concat('Server=tcp:',variables('servers_sample_db_server_mas_name'),uniqueString(resourceGroup().id),'.database.windows.net,1433;Initial Catalog=samplesales;Persist Security Info=False;User ID=sql-admin;Password=',parameters('servers_sql_db_awd_login_password'),';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]"
+                              }
                         
                       }
                   }

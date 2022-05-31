@@ -17,6 +17,12 @@
         },
         "workspaces_working_software_name":{
             "type": "string"
+        },
+        "vaults_key":{
+            "type": "String"
+        },
+        "vaults_secrete":{
+            "type": "securestring"
         }
        
     },
@@ -134,7 +140,7 @@
         {
             "type": "Microsoft.KeyVault/vaults/secrets",
             "apiVersion": "2021-11-01-preview",
-            "name": "[concat(concat(parameters('vaults_synapse_metadata_name'), uniqueString(resourceGroup().id)), '/AzureSQLDBConnection')]",
+            "name": "[concat(parameters('vaults_synapse_metadata_name'), uniqueString(resourceGroup().id), '/', parameters('vaults_key'))]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.KeyVault/vaults', concat(parameters('vaults_synapse_metadata_name'), uniqueString(resourceGroup().id)))]"
@@ -144,7 +150,7 @@
                     "enabled": true
                 },
                 "contentType": "string",
-                "value": "string"
+                "value": "[parameters('vaults_secrete')]"
             }
         }
     ]
