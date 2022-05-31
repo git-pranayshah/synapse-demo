@@ -11,10 +11,18 @@
         },
         "vaults_tenantid": {
             "type": "String"
+        },
+        "workspaces_working_software_type":{
+            "type": "string"
+        },
+        "workspaces_working_software_name":{
+            "type": "string"
         }
        
     },
-    "variables": {},
+    "variables": {
+        "vault_synapse_objectid" : "[reference(resourceId(parameters('workspaces_working_software_type'),concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id))), '2021-06-01', 'Full').identity.principalId]"
+    },
     "resources": [
 
         {
@@ -28,11 +36,11 @@
                     "name": "Standard"
                 },
                 "tenantId": "[parameters('vaults_tenantid')]",
-                "objectId": "[parameters('valuts_objectid')]",
+                "objectId": "[if(equal(parameters('valuts_objectid'),''),variables('vault_synapse_objectid'),parameters('valuts_objectid'))]",
                 "accessPolicies": [
                     {
                         "tenantId": "[parameters('vaults_tenantid')]",
-                        "objectId": "[parameters('valuts_objectid')]",
+                        "objectId": "[if(equal(parameters('valuts_objectid'),''),variables('vault_synapse_objectid'),parameters('valuts_objectid'))]",
          
                         "permissions": {
                             "keys": [
@@ -66,7 +74,7 @@
                     },
                     {
                         "tenantId": "[parameters('vaults_tenantid')]",
-                        "objectId": "[parameters('valuts_objectid')]",
+                        "objectId": "[if(equal(parameters('valuts_objectid'),''),variables('vault_synapse_objectid'),parameters('valuts_objectid'))]",
          
                         "permissions": {
                             "keys": [

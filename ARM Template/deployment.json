@@ -86,7 +86,7 @@
               },
                 "parameters": {
                   "workspaces_working_software_name": {
-                    "value": "swsynpse"
+                    "value":"[parameters('workspaces_working_software_name')]"
                   },
                   "storageAccounts_workingswsynapse_name": {
                       "value": "swstorage"
@@ -129,11 +129,17 @@
                       },
                         "parameters": {
                           "valuts_objectid": {
-                            "value":"[parameters('valuts_synaps_objectid')]"                          
-                          },
-                          "vaults_synapse_metadata_name": {
-                            "value": "[parameters('vaults_synapse_metadata_name')]"
-                        },
+                            "value":"[parameters('valuts_objectid')"   
+                            },
+                            "workspaces_working_software_name": {
+                              "value":"[parameters('workspaces_working_software_name')"   
+                              },
+                              "workspaces_working_software_type": {
+                                "value":"Microsoft.Synapse/workspaces"
+                              },
+                                "vaults_synapse_metadata_name": {
+                                  "value": "[parameters('vaults_synapse_metadata_name')]"
+                              },
                           "vaults_tenantid": {
                             "value": "[parameters('vaults_tenantid')]"
                         }
