@@ -119,6 +119,9 @@
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2021-04-01",
                 "name": "keyValt",
+                "dependsOn": [
+                  "[resourceId('Microsoft.Synapse/workspaces', concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)))]"
+              ],
                 "properties": {
                   "mode": "Incremental",
                     "templateLink": {
