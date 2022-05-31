@@ -4,7 +4,8 @@
     "parameters": {
         
         "valuts_objectid": {
-            "type": "String"
+            "type": "String",
+            "defaultValue": "[reference(resourceId('Microsoft.Synapse/workspaces',concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id))), '2021-06-01', 'Full').identity.principalId]"
         },
         "vaults_synapse_metadata_name": {
             "type": "String"
