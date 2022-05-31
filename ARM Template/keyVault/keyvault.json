@@ -134,7 +134,9 @@
             "properties": {
                 "attributes": {
                     "enabled": true
-                }
+                },
+                "contentType": "string",
+                "value": "Server=tcp:sampledbxwc6ucf4jlaf4.database.windows.net,1433;Initial Catalog=samplesales;Persist Security Info=False;User ID=sql-admin;Password=Passw@rd2424;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
             }
         }
     ]
