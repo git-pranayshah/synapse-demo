@@ -1,15 +1,14 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": {
-      "subscription_id": {
-          "type": "String",
-          "defaultValue": "test"
-      },
-     
+  "parameters": {    
       "servers_sql_db_awd_login_user": {
           "type": "String",
-          "defaultValue": "sql-admin"
+          "defaultValue": "sql-admin",
+          "metadata": {
+            "desctuption": "SQL Server User Name",
+            "title": "SQL Server Login User"
+          }
       },
       "servers_sql_db_awd_login_password": {
           "type": "securestring",

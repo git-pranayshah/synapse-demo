@@ -14,6 +14,9 @@ Template should help you to kick start working with the Synapse environment with
     - Select Table Script
     - Azure Data Factory pipeline to move data from SQL Server to Synapse Storage
     - Linked Service with its connection configurations
+4.  Security Firewall
+    - Synapse Workspace will have its access only from the client ip given at the time of deployment
+    - Add more ip whitelisting in network firewall to allow other to use the synapse workspace
 
 
 ## Target audience
@@ -32,6 +35,7 @@ The [Deployment.json](https://github.com/git-pranayshah/synapse-demo/blob/master
 [Deployment.json](https://github.com/git-pranayshah/synapse-demo/blob/master/ARM%20Template/deployment.json) can be modified to match your current infrastructure needs.
 
 # Pre-requisite to deploy the Template
+To use this solution, you will need access to an Azure subscription. Also have to look for correct public ip. You can find your public ipv4 ip from the website https://whatsmyip.com/
 
 ## One Click Deploying Template
 <!-- Powershell command for Translating Git URL for template.json
