@@ -42,11 +42,11 @@
                     "name": "Standard"
                 },
                 "tenantId": "[parameters('KeyVaultsTenantId')]",
-                "objectId": "[if(equals(parameters('OptionalVaultsObjectId'),''),reference(resourceId(parameters('workspaces_working_software_type'),concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id))), '2021-06-01', 'Full').identity.principalId,parameters('OptionalVaultsObjectId'))]",
+                "objectId": "[if(equals(parameters('OptionalKeyvaultsObjectId'),''),reference(resourceId(parameters('workspaces_working_software_type'),concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id))), '2021-06-01', 'Full').identity.principalId,parameters('OptionalKeyvaultsObjectId'))]",
                 "accessPolicies": [
                     {
                         "tenantId": "[parameters('KeyVaultsTenantId')]",
-                        "objectId": "[if(equals(parameters('OptionalVaultsObjectId'),''),reference(resourceId(parameters('workspaces_working_software_type'),concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id))), '2021-06-01', 'Full').identity.principalId,parameters('OptionalVaultsObjectId'))]",
+                        "objectId": "[if(equals(parameters('OptionalKeyvaultsObjectId'),''),reference(resourceId(parameters('workspaces_working_software_type'),concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id))), '2021-06-01', 'Full').identity.principalId,parameters('OptionalKeyvaultsObjectId'))]",
          
                         "permissions": {
                             "keys": [
@@ -80,7 +80,7 @@
                     },
                     {
                         "tenantId": "[parameters('KeyVaultsTenantId')]",
-                        "objectId": "[if(equals(parameters('OptionalVaultsObjectId'),''),reference(resourceId(parameters('workspaces_working_software_type'),concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id))), '2021-06-01', 'Full').identity.principalId,parameters('OptionalVaultsObjectId'))]",
+                        "objectId": "[if(equals(parameters('OptionalKeyvaultsObjectId'),''),reference(resourceId(parameters('workspaces_working_software_type'),concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id))), '2021-06-01', 'Full').identity.principalId,parameters('OptionalKeyvaultsObjectId'))]",
          
                         "permissions": {
                             "keys": [
