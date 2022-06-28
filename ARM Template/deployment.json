@@ -61,8 +61,7 @@
   "variables": { 
     "servers_sample_db_server_mas_name": "sampledb",
     "vaults_synapse_metadata_name":  "test",
-    "OptionalKeyvaultsObjectId": "",
-    "KeyVaultsTenantId": "[subscription().tenantId]"
+    "OptionalKeyvaultsObjectId": ""
    },
   "resources": [
      {
@@ -152,7 +151,7 @@
                                   "value": "[variables('vaults_synapse_metadata_name')]"
                               },
                                 "KeyVaultsTenantId": {
-                                  "value": "[variables('KeyVaultsTenantId')]"
+                                  "value": "[subscription().tenantId]"
                               },
                                 "vaults_key":{
                                   "value": "AzureSQLDBConnection"
