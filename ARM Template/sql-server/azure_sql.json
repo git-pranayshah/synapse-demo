@@ -1,0 +1,76 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters":{
+        "servers_sample_db_server_mas_name": {
+            "type": "String"
+        },
+        "servers_sql_db_awd_login_user": {
+            "type": "String"
+        },
+        "servers_sql_db_awd_login_password": {
+            "type": "securestring"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Sql/servers",
+            "apiVersion": "2021-08-01-preview",
+            "name": "[concat(parameters('servers_sample_db_server_mas_name'), uniqueString(resourceGroup().id))]",
+            "location": "[resourceGroup().location]",
+            "kind": "v12.0",
+            "properties": {
+                "mode": "Incremental",
+                "administratorLogin": "[parameters('servers_sql_db_awd_login_user')]",
+                "administratorLoginPassword": "[parameters('servers_sql_db_awd_login_password')]",
+                "version": "12.0",
+                "minimalTlsVersion": "1.2",
+                "publicNetworkAccess": "Enabled",
+                "restrictOutboundNetworkAccess": "Disabled"
+            }
+        },
+        {
+            "type": "Microsoft.Sql/servers/databases",
+            "apiVersion": "2021-08-01-preview",
+            "name": "[concat(concat(parameters('servers_sample_db_server_mas_name'), uniqueString(resourceGroup().id)), '/samplesales')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', concat(parameters('servers_sample_db_server_mas_name'), uniqueString(resourceGroup().id)))]"
+            ],
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "GP_Gen5",
+                "tier": "GeneralPurpose",
+                "family": "Gen5",
+                "capacity": 2
+            },
+            "kind": "v12.0,user,vcore",
+            "properties": {
+                "mode": "Incremental",
+                "collation": "SQL_Latin1_General_CP1_CI_AS",
+                "maxSizeBytes": 34359738368,
+                "catalogCollation": "SQL_Latin1_General_CP1_CI_AS",
+                "zoneRedundant": false,
+                "licenseType": "LicenseIncluded",
+                "readScale": "Disabled",
+                "requestedBackupStorageRedundancy": "local",
+                "isLedgerOn": false,
+                "sampleName": "AdventureWorksLT",
+                "AllowAllAzureServices": true
+            }
+        },
+        {
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "apiVersion": "2021-08-01-preview",
+            "name": "[concat(concat(parameters('servers_sample_db_server_mas_name'), uniqueString(resourceGroup().id)), '/manual')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', concat(parameters('servers_sample_db_server_mas_name'), uniqueString(resourceGroup().id)))]"
+            ],
+            "properties": {
+                "startIpAddress": "0.0.0.0",
+                "endIpAddress": "0.0.0.0",
+                "AllowAllAzureServices": true
+            }
+        }
+    ]
+}

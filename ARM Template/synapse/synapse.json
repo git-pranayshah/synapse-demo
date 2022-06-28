@@ -1,0 +1,199 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters":{
+        "workspaces_working_software_name": {
+            "type": "String"
+        },
+        "managedResourceGroupName":{
+            "type": "String"
+        },
+        "storageAccounts_workingswsynapse_name": {
+            "type": "String"
+        },
+        "servers_sql_db_awd_login_user":{
+            "type": "string"
+        },
+        "client_ip": {
+            "type": "String"
+        },
+        "github_account_name": {
+            "type": "String"
+        },
+        "github_branch": {
+            "type": "String"
+        },
+        "github_repo": {
+            "type": "String"
+        },
+        "github_rootfolder": {
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+        
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2021-09-01",
+            "name": "[concat(parameters('storageAccounts_workingswsynapse_name'), uniqueString(resourceGroup().id))]",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Standard_RAGRS",
+                "tier": "Standard"
+            },
+            "kind": "StorageV2",
+            "properties": {
+                "minimumTlsVersion": "TLS1_2",
+                "allowBlobPublicAccess": true,
+                "isHnsEnabled": true,
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": true,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "keyType": "Account",
+                            "enabled": true
+                        },
+                        "blob": {
+                            "keyType": "Account",
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                },
+                "isVersioningEnabled": false,
+                "accessTier": "Hot"
+            }
+        },
+        
+        {
+            "type": "Microsoft.Synapse/workspaces",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id))]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', concat(parameters('storageAccounts_workingswsynapse_name'), uniqueString(resourceGroup().id)))]"
+            ],
+            "identity": {
+                "type": "SystemAssigned"
+            },
+            "properties": {
+                "defaultDataLakeStorage": {
+                    "resourceId": "[resourceId('Microsoft.Storage/storageAccounts', concat(parameters('storageAccounts_workingswsynapse_name'), uniqueString(resourceGroup().id)))]",
+                    "createManagedPrivateEndpoint": false,
+                    "accountUrl": "https://workingswsynapse.dfs.core.windows.net",
+                    "filesystem": "synapse"
+                },
+                "encryption": {},
+                "connectivityEndpoints": {
+                    "web": "[concat('https://web.azuresynapse.net?workspace=%2fsubscriptions%2ff39588f8-a5eb-47fc-8605-68dd157901bd%2fresourceGroups%2fworking-sw-synapse%2fproviders%2fMicrosoft.Synapse%2fworkspaces%2f', concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)))]",
+                    "dev": "[concat('https://', concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '.dev.azuresynapse.net')]",
+                    "sqlOnDemand": "[concat(concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '-ondemand.sql.azuresynapse.net')]",
+                    "sql": "[concat(concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '.sql.azuresynapse.net')]"
+                },
+                "managedResourceGroupName": "[concat(parameters('managedResourceGroupName') , uniqueString(resourceGroup().id))]",
+                "sqlAdministratorLogin": "[parameters('servers_sql_db_awd_login_user')]",
+                "privateEndpointConnections": [],
+                "workspaceRepositoryConfiguration": {
+                    "accountName": "[parameters('github_account_name')]", 
+                    "collaborationBranch": "[parameters('github_branch')]",
+                    "repositoryName": "[parameters('github_repo')]",
+                    "rootFolder": "[parameters('github_rootfolder')]",
+                    "type": "WorkspaceGitHubConfiguration"
+                },
+                "publicNetworkAccess": "Enabled",
+                "azureADOnlyAuthentication": false,
+                "trustedServiceBypassEnabled": false
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/firewallRules",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '/AllowAllWindowsAzureIps')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces', concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)))]"
+            ],
+            "properties": {
+                "startIpAddress": "0.0.0.0",
+                "endIpAddress": "0.0.0.0",
+                "AllowAllAzureServices": true
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/firewallRules",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '/client_ip')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces', concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)))]"
+            ],
+            "properties": {
+                "startIpAddress": "[parameters('client_ip')]",
+                "endIpAddress": "[parameters('client_ip')]",
+                "AllowAllAzureServices": true
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/integrationruntimes",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '/AutoResolveIntegrationRuntime')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces', concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)))]"
+            ],
+            "properties": {
+                "type": "Managed",
+                "typeProperties": {
+                    "computeProperties": {
+                        "location": "AutoResolve"
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Synapse/workspaces/sqlPools",
+            "apiVersion": "2021-06-01",
+            "name": "[concat(concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '/dedicatedsqlpool')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Synapse/workspaces', concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)))]"
+            ],
+            "sku": {
+                "name": "DW1000c",
+                "capacity": 0
+            },
+            "properties": {
+                "maxSizeBytes": 263882790666240,
+                "collation": "SQL_Latin1_General_CP1_CI_AS",
+                "storageAccountType": "GRS",
+                "provisioningState": "Succeeded"
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices",
+            "apiVersion": "2021-09-01",
+            "name": "[concat(concat(parameters('storageAccounts_workingswsynapse_name'), uniqueString(resourceGroup().id)), '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', concat(parameters('storageAccounts_workingswsynapse_name'), uniqueString(resourceGroup().id)))]"
+            ],
+            "sku": {
+                "name": "Standard_RAGRS",
+                "tier": "Standard"
+            },
+            "properties": {
+                "cors": {
+                    "corsRules": []
+                },
+                "deleteRetentionPolicy": {
+                    "allowPermanentDelete": false,
+                    "enabled": false
+                }
+                
+            }
+        }
+    ]
+}

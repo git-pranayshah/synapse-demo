@@ -1,0 +1,162 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+      "subscription_id": {
+          "type": "String",
+          "defaultValue": "test"
+      },
+     
+      "servers_sql_db_awd_login_user": {
+          "type": "String",
+          "defaultValue": "sql-admin"
+      },
+      "servers_sql_db_awd_login_password": {
+          "type": "securestring",
+          "defaultValue": "Passw@rd2424"
+      },
+      "client_ip":{
+          "type": "String" ,
+          "defaultValue": "78.18.13.34"
+      }, 
+      "github_account_name": {
+          "type": "String",
+          "defaultValue": "git-pranayshah"
+      },
+      "github_branch": {
+          "type": "String",
+          "defaultValue": "dev"
+      },
+      "github_repo": {
+          "type": "String",
+          "defaultValue": "synapse-demo"
+      },
+      "github_rootfolder": {
+          "type": "String",
+          "defaultValue": "synapse"
+      },
+      "valuts_objectid": {
+        "defaultValue": "",
+        "type": "String"
+       },
+        
+        "vaults_tenantid": {
+            "defaultValue": "[subscription().tenantId]",
+            "type": "String"
+        },
+        "workspaces_working_software_name": {
+          "defaultValue": "swsynpse",
+          "type": "String"
+        }
+  },
+  "functions": [],
+  "variables": { "servers_sample_db_server_mas_name": "sampledb","vaults_synapse_metadata_name":  "test"
+   },
+  "resources": [
+     {
+        "type": "Microsoft.Resources/deployments",
+        "apiVersion": "2021-04-01",
+          "name": "AzureSQLServer",
+          "properties": {
+            "mode": "Incremental",
+            "templateLink": {
+              "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/sql-server/azure_sql.json"            },
+            "parameters": {
+              "servers_sample_db_server_mas_name": {
+                "value": "[variables('servers_sample_db_server_mas_name')]"
+              },
+                "servers_sql_db_awd_login_user": {
+                  "value": "[parameters('servers_sql_db_awd_login_user')]"
+              },
+                "servers_sql_db_awd_login_password": {
+                  "value": "[parameters('servers_sql_db_awd_login_password')]"
+              }
+            }
+          }
+      },
+      {
+        "type": "Microsoft.Resources/deployments",
+        "apiVersion": "2021-04-01",
+          "name": "AzureSynapse",
+          "properties": {
+            "mode": "Incremental",
+              "templateLink": {
+                "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/synapse/synapse.json"           
+              },
+                "parameters": {
+                  "workspaces_working_software_name": {
+                    "value":"[parameters('workspaces_working_software_name')]"
+                  },
+                  "storageAccounts_workingswsynapse_name": {
+                      "value": "swstorage"
+                  },
+                  "managedResourceGroupName":{
+                      "value": "swstorage-mrg"
+                  },
+                  "servers_sql_db_awd_login_user": {
+                    "value": "[parameters('servers_sql_db_awd_login_user')]"
+                  },
+                  "client_ip": {
+                    "value": "[parameters('client_ip')]"
+                  },
+                  "github_account_name": {
+                      "value": "[parameters('github_account_name')]"
+                  },
+                  "github_branch": {
+                      "value": "[parameters('github_branch')]"
+                  },
+                  "github_repo": {
+                      "value": "[parameters('github_repo')]"
+                  },
+                  "github_rootfolder": {
+                      "value": "[parameters('github_rootfolder')]"
+                  }
+                }
+              },
+              "resources": [
+                 {
+                "type": "Microsoft.Resources/deployments",
+                "apiVersion": "2021-04-01",
+                "name": "keyValt",
+                "dependsOn": [
+                  "[resourceId('Microsoft.Resources/deployments', 'AzureSynapse')]"
+                  ],
+                  "properties": {
+                    "mode": "Incremental",
+                      "templateLink": {
+                        "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/keyVault/keyvault.json"           
+                      },
+                        "parameters": {
+                          "valuts_objectid": {
+                            "value":"[parameters('valuts_objectid')]"   
+                            },
+                            "workspaces_working_software_name": {
+                              "value":"[parameters('workspaces_working_software_name')]"   
+                              },
+                              "workspaces_working_software_type": {
+                                "value":"Microsoft.Synapse/workspaces"
+                              },
+                                "vaults_synapse_metadata_name": {
+                                  "value": "[variables('vaults_synapse_metadata_name')]"
+                              },
+                                "vaults_tenantid": {
+                                  "value": "[parameters('vaults_tenantid')]"
+                              },
+                                "vaults_key":{
+                                  "value": "AzureSQLDBConnection"
+                              },
+                                "vaults_secrete":{
+                                    "value": "[concat('Server=tcp:',variables('servers_sample_db_server_mas_name'),uniqueString(resourceGroup().id),'.database.windows.net,1433;Initial Catalog=samplesales;Persist Security Info=False;User ID=sql-admin;Password=',parameters('servers_sql_db_awd_login_password'),';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]"
+                              }
+                        
+                      }
+                  }
+            }
+              ]
+            }
+
+    ],
+    "outputs": {
+      
+    }
+  }
