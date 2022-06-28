@@ -25,11 +25,11 @@ Template should help you to kick start working with the Synapse environment with
 
 # Landing Zone Architecture
 
-The [Deployment.json](https://github.com/git-pranayshah/synapse-demo/blob/master/deployment.json) Azure Resource Manager template will help you automatically deploy the diagram below architecture
+The [Deployment.json](https://github.com/git-pranayshah/synapse-demo/blob/master/ARM%20Template/deployment.json) Azure Resource Manager template will help you automatically deploy the diagram below architecture
 
 ![alt image](https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/images/Landing_Zone_Template.png)
 
-[Deployment.json](https://github.com/git-pranayshah/synapse-demo/blob/master/deployment.json) can be modified to match your current infrastructure needs.
+[Deployment.json](https://github.com/git-pranayshah/synapse-demo/blob/master/ARM%20Template/deployment.json) can be modified to match your current infrastructure needs.
 
 # Pre-requisite to deploy the Template
 
@@ -61,7 +61,7 @@ Using the search bar on top type Templates
 
 ![alt image](https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/images/Name%20and%20Description.png)
 
-- Add for modified [Deployment.json](https://github.com/git-pranayshah/synapse-demo/blob/master/deployment.json) and save it
+- Add for modified [Deployment.json](https://github.com/git-pranayshah/synapse-demo/blob/master/ARM%20Template/deployment.json) and save it
 
 ![alt image](https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/images/add%20code.png)
 
