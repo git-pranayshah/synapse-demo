@@ -76,11 +76,13 @@ Using the search bar on top type Templates
 - Allow 30 minutes for the deployment to complete
 - Peer your Hub and Spoke Virtual Networks as needed
 
-## Azure services and related products
+## Post Deployment tasks
 
-example!!
-- Azure Networking
-- Security
+Post deployment its requried to configure correct Azure KeyVault which has required credentials to connect to the Microsoft SQL Server having sample Sales data
+
+# Deployed Services
+
+![alt image](https://github.com/git-pranayshah/synapse-demo/blob/dev/master/images/Fill%20out%20the%20details%20and%20purchase.png)
 
 ## Related references
 example!!
