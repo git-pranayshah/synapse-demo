@@ -25,11 +25,11 @@ Template should help you to kick start working with the Synapse environment with
 
 # Product/LZ architecture
 
-The [Template.json](https://github.com/git-pranayshah/template/blob/master/template.json) Azure Resource Manager template will help you automatically deploy the diagram below architecture
+The [Template.json](https://github.com/git-pranayshah/synapse-demo/blob/dev/master/template.json) Azure Resource Manager template will help you automatically deploy the diagram below architecture
 
-![alt image](https://github.com/git-pranayshah/template/blob/master/images/Landing_Zone_Template.png)
+![alt image](https://github.com/git-pranayshah/synapse-demo/blob/dev/images/Landing_Zone_Template.png)
 
-[Template.json](https://github.com/git-pranayshah/template/blob/master/template.json) can be modified to match your current infrastructure needs.
+[Template.json](https://github.com/git-pranayshah/synapse-demo/blob/dev/master/template.json) can be modified to match your current infrastructure needs.
 
 # Pre-requisite to deploy the Template
 
@@ -51,27 +51,27 @@ Final URL: <Base URL>/<uri>
 
 Using the search bar on top type Templates
 
-![alt image](https://github.com/git-pranayshah/template/blob/master/images/Search.png)
+![alt image](https://github.com/git-pranayshah/synapse-demo/blob/dev/master/images/Search.png)
 
 - Create a new template
 
-![alt image](https://github.com/git-pranayshah/template/blob/master/images/create.png)
+![alt image](https://github.com/git-pranayshah/synapse-demo/blob/dev/master/images/create.png)
 
 - Give a name and a description to the template
 
-![alt image](https://github.com/git-pranayshah/template/blob/master/images/Name%20and%20Description.png)
+![alt image](https://github.com/git-pranayshah/synapse-demo/blob/dev/master/images/Name%20and%20Description.png)
 
-- Add for modified [Template.json](https://github.com/git-pranayshah/template/blob/master/template.json) and save it
+- Add for modified [Template.json](https://github.com/git-pranayshah/synapse-demo/blob/dev/master/template.json) and save it
 
-![alt image](https://github.com/git-pranayshah/template/blob/master/images/add%20code.png)
+![alt image](https://github.com/git-pranayshah/synapse-demo/blob/dev/master/images/add%20code.png)
 
 - Select the newly added template and click deploy
 
-![alt image](https://github.com/git-pranayshah/template/blob/master/images/Select%20and%20deploy%20template.png)
+![alt image](https://github.com/git-pranayshah/synapse-demo/blob/dev/master/images/Select%20and%20deploy%20template.png)
 
 - Fill out the blanks with your details and click purchase
 
-![alt image](https://github.com/git-pranayshah/template/blob/master/images/Fill%20out%20the%20details%20and%20purchase.png)
+![alt image](https://github.com/git-pranayshah/synapse-demo/blob/dev/master/images/Fill%20out%20the%20details%20and%20purchase.png)
 
 - Allow 30 minutes for the deployment to complete
 - Peer your Hub and Spoke Virtual Networks as needed
