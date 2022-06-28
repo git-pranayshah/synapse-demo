@@ -31,6 +31,8 @@ The [Template.json](https://github.com/git-pranayshah/template/blob/master/templ
 
 [Template.json](https://github.com/git-pranayshah/template/blob/master/template.json) can be modified to match your current infrastructure needs.
 
+# Pre-requisite to deploy the Template
+
 ## One Click Deploying Teamplate
 <!-- Powershell command for Translating Git URL for template.json
     $url = "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/SQL-Server/azure_sql.json"
