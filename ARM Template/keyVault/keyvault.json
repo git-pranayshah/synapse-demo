@@ -9,7 +9,7 @@
         "vaults_synapse_metadata_name": {
             "type": "String"
         },
-        "VaultsTenantId": {
+        "KeyVaultsTenantId": {
             "type": "String"
         },
         "workspaces_working_software_type":{
@@ -41,11 +41,11 @@
                     "family": "A",
                     "name": "Standard"
                 },
-                "tenantId": "[parameters('VaultsTenantId')]",
+                "tenantId": "[parameters('KeyVaultsTenantId')]",
                 "objectId": "[if(equals(parameters('OptionalVaultsObjectId'),''),reference(resourceId(parameters('workspaces_working_software_type'),concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id))), '2021-06-01', 'Full').identity.principalId,parameters('OptionalVaultsObjectId'))]",
                 "accessPolicies": [
                     {
-                        "tenantId": "[parameters('VaultsTenantId')]",
+                        "tenantId": "[parameters('KeyVaultsTenantId')]",
                         "objectId": "[if(equals(parameters('OptionalVaultsObjectId'),''),reference(resourceId(parameters('workspaces_working_software_type'),concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id))), '2021-06-01', 'Full').identity.principalId,parameters('OptionalVaultsObjectId'))]",
          
                         "permissions": {
@@ -79,7 +79,7 @@
                         }
                     },
                     {
-                        "tenantId": "[parameters('VaultsTenantId')]",
+                        "tenantId": "[parameters('KeyVaultsTenantId')]",
                         "objectId": "[if(equals(parameters('OptionalVaultsObjectId'),''),reference(resourceId(parameters('workspaces_working_software_type'),concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id))), '2021-06-01', 'Full').identity.principalId,parameters('OptionalVaultsObjectId'))]",
          
                         "permissions": {
