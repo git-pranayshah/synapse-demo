@@ -4,7 +4,7 @@
 		"annotations": [],
 		"type": "AzureKeyVault",
 		"typeProperties": {
-			"baseUrl": "https://testwlsnovb2jq4lc.vault.azure.net/"
+			"baseUrl": "https://teradata.vault.azure.net/"
 		}
 	}
 }
