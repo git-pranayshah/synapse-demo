@@ -20,7 +20,7 @@
           "type": "String" ,
           "defaultValue": "",
           "metadata": {
-            "description": "IP address of the User"
+            "description": "IP address of the User, Suggestion, look the public Ip from https://whatsmyip.com/ from user browser "
           }
       }, 
       "GithubAccountName": {
@@ -51,28 +51,18 @@
             "description": "Default git hub repository root folder having all synapse deployment jsons. Defaults to the mentioned value"
           }
       },
-      "OptionalKeyvaultsObjectId": {
-        "defaultValue": "",
-        "type": "String",
-        "metadata": {
-          "description": "Do not add any value if you dont have any existing KeyVault with SQL Connection Strigs."
-        }
-       },
-        
-        "KeyVaultsTenantId": {
-            "defaultValue": "[subscription().tenantId]",
-            "type": "String",
-            "metadata": {
-              "description": "Do not add any value if you dont have any existing KeyVault with SQL Connection Strigs."
-            }
-        },
+  
         "SynapseWorkSpaceName": {
           "defaultValue": "swsynpse",
           "type": "String"
         }
   },
   "functions": [],
-  "variables": { "servers_sample_db_server_mas_name": "sampledb","vaults_synapse_metadata_name":  "test"
+  "variables": { 
+    "servers_sample_db_server_mas_name": "sampledb",
+    "vaults_synapse_metadata_name":  "test",
+    "OptionalKeyvaultsObjectId": "",
+    "KeyVaultsTenantId": "[subscription().tenantId]"
    },
   "resources": [
      {
@@ -150,7 +140,7 @@
                       },
                         "parameters": {
                           "OptionalVaultsObjectId": {
-                            "value":"[parameters('OptionalVaultsObjectId')]"   
+                            "value":"[variables('OptionalVaultsObjectId')]"   
                             },
                             "SynapseWorkSpaceName": {
                               "value":"[parameters('SynapseWorkSpaceName')]"   
@@ -162,7 +152,7 @@
                                   "value": "[variables('vaults_synapse_metadata_name')]"
                               },
                                 "KeyVaultsTenantId": {
-                                  "value": "[parameters('KeyVaultsTenantId')]"
+                                  "value": "[variables('KeyVaultsTenantId')]"
                               },
                                 "vaults_key":{
                                   "value": "AzureSQLDBConnection"
