@@ -2,48 +2,71 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {    
-      "servers_sql_db_awd_login_user": {
+      "SQLServerLoginUser": {
           "type": "String",
           "defaultValue": "sql-admin",
           "metadata": {
-            "desctuption": "SQL Server User Name",
-            "title": "SQL Server Login User"
+            "desctuption": "SQL Server User Name"
           }
       },
-      "servers_sql_db_awd_login_password": {
+      "SQLServerLoginUserPassword": {
           "type": "securestring",
-          "defaultValue": "Passw@rd2424"
+          "defaultValue": "Passw@rd2424",
+          "metadata": {
+            "desctuption": "SQL Server User Password"
+          }
       },
-      "client_ip":{
+      "ClientIp":{
           "type": "String" ,
-          "defaultValue": "78.18.13.34"
+          "defaultValue": "",
+          "metadata": {
+            "desctuption": "IP address of the User"
+          }
       }, 
-      "github_account_name": {
+      "GithubAccountName": {
           "type": "String",
-          "defaultValue": "git-pranayshah"
+          "defaultValue": "git-pranayshah",
+          "metadata": {
+            "desctuption": "Default git hub repository acccount name having all synapse deployment jsons. Defaults to the mentioned value"
+          }
       },
-      "github_branch": {
+      "GithubBranchName": {
           "type": "String",
-          "defaultValue": "master"
+          "defaultValue": "master",
+          "metadata": {
+            "desctuption": "Default git hub repository branch having all synapse deployment jsons. Defaults to the mentioned value"
+          }
       },
-      "github_repo": {
+      "GithubRepoName": {
           "type": "String",
-          "defaultValue": "synapse-demo"
+          "defaultValue": "synapse-demo",
+          "metadata": {
+            "desctuption": "Default git hub repository name having all synapse deployment jsons. Defaults to the mentioned value"
+          }
       },
-      "github_rootfolder": {
+      "GithubRootFolder": {
           "type": "String",
-          "defaultValue": "synapse"
+          "defaultValue": "synapse",
+          "metadata": {
+            "desctuption": "Default git hub repository root folder having all synapse deployment jsons. Defaults to the mentioned value"
+          }
       },
-      "valuts_objectid": {
+      "OptionalKeyvaultsObjectId": {
         "defaultValue": "",
-        "type": "String"
+        "type": "String",
+        "metadata": {
+          "desctuption": "Do not add any value if you dont have any existing KeyVault with SQL Connection Strigs."
+        }
        },
         
-        "vaults_tenantid": {
+        "KeyVaultsTenantId": {
             "defaultValue": "[subscription().tenantId]",
-            "type": "String"
+            "type": "String",
+            "metadata": {
+              "desctuption": "Do not add any value if you dont have any existing KeyVault with SQL Connection Strigs."
+            }
         },
-        "workspaces_working_software_name": {
+        "SynapseWorkSpaceName": {
           "defaultValue": "swsynpse",
           "type": "String"
         }
@@ -64,11 +87,11 @@
               "servers_sample_db_server_mas_name": {
                 "value": "[variables('servers_sample_db_server_mas_name')]"
               },
-                "servers_sql_db_awd_login_user": {
-                  "value": "[parameters('servers_sql_db_awd_login_user')]"
+                "SQLServerLoginUser": {
+                  "value": "[parameters('SQLServerLoginUser')]"
               },
-                "servers_sql_db_awd_login_password": {
-                  "value": "[parameters('servers_sql_db_awd_login_password')]"
+                "SQLServerLoginUserPassword": {
+                  "value": "[parameters('SQLServerLoginUserPassword')]"
               }
             }
           }
@@ -83,8 +106,8 @@
                 "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/ARM%20Template/synapse/synapse.json"           
               },
                 "parameters": {
-                  "workspaces_working_software_name": {
-                    "value":"[parameters('workspaces_working_software_name')]"
+                  "SynapseWorkSpaceName": {
+                    "value":"[parameters('SynapseWorkSpaceName')]"
                   },
                   "storageAccounts_workingswsynapse_name": {
                       "value": "swstorage"
@@ -92,23 +115,23 @@
                   "managedResourceGroupName":{
                       "value": "swstorage-mrg"
                   },
-                  "servers_sql_db_awd_login_user": {
-                    "value": "[parameters('servers_sql_db_awd_login_user')]"
+                  "SQLServerLoginUser": {
+                    "value": "[parameters('SQLServerLoginUser')]"
                   },
-                  "client_ip": {
-                    "value": "[parameters('client_ip')]"
+                  "ClientIp": {
+                    "value": "[parameters('ClientIp')]"
                   },
-                  "github_account_name": {
-                      "value": "[parameters('github_account_name')]"
+                  "GithubAccountName": {
+                      "value": "[parameters('GithubAccountName')]"
                   },
-                  "github_branch": {
-                      "value": "[parameters('github_branch')]"
+                  "GithubBranchName": {
+                      "value": "[parameters('GithubBranchName')]"
                   },
-                  "github_repo": {
-                      "value": "[parameters('github_repo')]"
+                  "GithubRepoName": {
+                      "value": "[parameters('GithubRepoName')]"
                   },
-                  "github_rootfolder": {
-                      "value": "[parameters('github_rootfolder')]"
+                  "GithubRootFolder": {
+                      "value": "[parameters('GithubRootFolder')]"
                   }
                 }
               },
@@ -126,11 +149,11 @@
                         "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/ARM%20Template/keyVault/keyvault.json"           
                       },
                         "parameters": {
-                          "valuts_objectid": {
-                            "value":"[parameters('valuts_objectid')]"   
+                          "OptionalVaultsObjectId": {
+                            "value":"[parameters('OptionalVaultsObjectId')]"   
                             },
-                            "workspaces_working_software_name": {
-                              "value":"[parameters('workspaces_working_software_name')]"   
+                            "SynapseWorkSpaceName": {
+                              "value":"[parameters('SynapseWorkSpaceName')]"   
                               },
                               "workspaces_working_software_type": {
                                 "value":"Microsoft.Synapse/workspaces"
@@ -138,14 +161,14 @@
                                 "vaults_synapse_metadata_name": {
                                   "value": "[variables('vaults_synapse_metadata_name')]"
                               },
-                                "vaults_tenantid": {
-                                  "value": "[parameters('vaults_tenantid')]"
+                                "KeyVaultsTenantId": {
+                                  "value": "[parameters('KeyVaultsTenantId')]"
                               },
                                 "vaults_key":{
                                   "value": "AzureSQLDBConnection"
                               },
                                 "vaults_secrete":{
-                                    "value": "[concat('Server=tcp:',variables('servers_sample_db_server_mas_name'),uniqueString(resourceGroup().id),'.database.windows.net,1433;Initial Catalog=samplesales;Persist Security Info=False;User ID=sql-admin;Password=',parameters('servers_sql_db_awd_login_password'),';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]"
+                                    "value": "[concat('Server=tcp:',variables('servers_sample_db_server_mas_name'),uniqueString(resourceGroup().id),'.database.windows.net,1433;Initial Catalog=samplesales;Persist Security Info=False;User ID=sql-admin;Password=',parameters('SQLServerLoginUserPassword'),';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;')]"
                               }
                         
                       }

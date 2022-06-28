@@ -2,7 +2,7 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters":{
-        "workspaces_working_software_name": {
+        "SynapseWorkSpaceName": {
             "type": "String"
         },
         "managedResourceGroupName":{
@@ -11,22 +11,22 @@
         "storageAccounts_workingswsynapse_name": {
             "type": "String"
         },
-        "servers_sql_db_awd_login_user":{
+        "SQLServerLoginUser":{
             "type": "string"
         },
-        "client_ip": {
+        "ClientIp": {
             "type": "String"
         },
-        "github_account_name": {
+        "GithubAccountName": {
             "type": "String"
         },
-        "github_branch": {
+        "GithubBranchName": {
             "type": "String"
         },
-        "github_repo": {
+        "GithubRepoName": {
             "type": "String"
         },
-        "github_rootfolder": {
+        "GithubRootFolder": {
             "type": "String"
         }
     },
@@ -75,7 +75,7 @@
         {
             "type": "Microsoft.Synapse/workspaces",
             "apiVersion": "2021-06-01",
-            "name": "[concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id))]",
+            "name": "[concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id))]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
                 "[resourceId('Microsoft.Storage/storageAccounts', concat(parameters('storageAccounts_workingswsynapse_name'), uniqueString(resourceGroup().id)))]"
@@ -92,19 +92,19 @@
                 },
                 "encryption": {},
                 "connectivityEndpoints": {
-                    "web": "[concat('https://web.azuresynapse.net?workspace=%2fsubscriptions%2ff39588f8-a5eb-47fc-8605-68dd157901bd%2fresourceGroups%2fworking-sw-synapse%2fproviders%2fMicrosoft.Synapse%2fworkspaces%2f', concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)))]",
-                    "dev": "[concat('https://', concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '.dev.azuresynapse.net')]",
-                    "sqlOnDemand": "[concat(concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '-ondemand.sql.azuresynapse.net')]",
-                    "sql": "[concat(concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '.sql.azuresynapse.net')]"
+                    "web": "[concat('https://web.azuresynapse.net?workspace=%2fsubscriptions%2ff39588f8-a5eb-47fc-8605-68dd157901bd%2fresourceGroups%2fworking-sw-synapse%2fproviders%2fMicrosoft.Synapse%2fworkspaces%2f', concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id)))]",
+                    "dev": "[concat('https://', concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id)), '.dev.azuresynapse.net')]",
+                    "sqlOnDemand": "[concat(concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id)), '-ondemand.sql.azuresynapse.net')]",
+                    "sql": "[concat(concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id)), '.sql.azuresynapse.net')]"
                 },
                 "managedResourceGroupName": "[concat(parameters('managedResourceGroupName') , uniqueString(resourceGroup().id))]",
-                "sqlAdministratorLogin": "[parameters('servers_sql_db_awd_login_user')]",
+                "sqlAdministratorLogin": "[parameters('SQLServerLoginUser')]",
                 "privateEndpointConnections": [],
                 "workspaceRepositoryConfiguration": {
-                    "accountName": "[parameters('github_account_name')]", 
-                    "collaborationBranch": "[parameters('github_branch')]",
-                    "repositoryName": "[parameters('github_repo')]",
-                    "rootFolder": "[parameters('github_rootfolder')]",
+                    "accountName": "[parameters('GithubAccountName')]", 
+                    "collaborationBranch": "[parameters('GithubBranchName')]",
+                    "repositoryName": "[parameters('GithubRepoName')]",
+                    "rootFolder": "[parameters('GithubRootFolder')]",
                     "type": "WorkspaceGitHubConfiguration"
                 },
                 "publicNetworkAccess": "Enabled",
@@ -115,9 +115,9 @@
         {
             "type": "Microsoft.Synapse/workspaces/firewallRules",
             "apiVersion": "2021-06-01",
-            "name": "[concat(concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '/AllowAllWindowsAzureIps')]",
+            "name": "[concat(concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id)), '/AllowAllWindowsAzureIps')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Synapse/workspaces', concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)))]"
+                "[resourceId('Microsoft.Synapse/workspaces', concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id)))]"
             ],
             "properties": {
                 "startIpAddress": "0.0.0.0",
@@ -128,22 +128,22 @@
         {
             "type": "Microsoft.Synapse/workspaces/firewallRules",
             "apiVersion": "2021-06-01",
-            "name": "[concat(concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '/client_ip')]",
+            "name": "[concat(concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id)), '/ClientIp')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Synapse/workspaces', concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)))]"
+                "[resourceId('Microsoft.Synapse/workspaces', concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id)))]"
             ],
             "properties": {
-                "startIpAddress": "[parameters('client_ip')]",
-                "endIpAddress": "[parameters('client_ip')]",
+                "startIpAddress": "[parameters('ClientIp')]",
+                "endIpAddress": "[parameters('ClientIp')]",
                 "AllowAllAzureServices": true
             }
         },
         {
             "type": "Microsoft.Synapse/workspaces/integrationruntimes",
             "apiVersion": "2021-06-01",
-            "name": "[concat(concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '/AutoResolveIntegrationRuntime')]",
+            "name": "[concat(concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id)), '/AutoResolveIntegrationRuntime')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Synapse/workspaces', concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)))]"
+                "[resourceId('Microsoft.Synapse/workspaces', concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id)))]"
             ],
             "properties": {
                 "type": "Managed",
@@ -157,10 +157,10 @@
         {
             "type": "Microsoft.Synapse/workspaces/sqlPools",
             "apiVersion": "2021-06-01",
-            "name": "[concat(concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)), '/dedicatedsqlpool')]",
+            "name": "[concat(concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id)), '/dedicatedsqlpool')]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[resourceId('Microsoft.Synapse/workspaces', concat(parameters('workspaces_working_software_name'), uniqueString(resourceGroup().id)))]"
+                "[resourceId('Microsoft.Synapse/workspaces', concat(parameters('SynapseWorkSpaceName'), uniqueString(resourceGroup().id)))]"
             ],
             "sku": {
                 "name": "DW1000c",

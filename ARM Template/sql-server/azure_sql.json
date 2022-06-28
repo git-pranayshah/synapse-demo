@@ -5,10 +5,10 @@
         "servers_sample_db_server_mas_name": {
             "type": "String"
         },
-        "servers_sql_db_awd_login_user": {
+        "SQLServerLoginUser": {
             "type": "String"
         },
-        "servers_sql_db_awd_login_password": {
+        "SQLServerLoginUserPassword": {
             "type": "securestring"
         }
     },
@@ -22,8 +22,8 @@
             "kind": "v12.0",
             "properties": {
                 "mode": "Incremental",
-                "administratorLogin": "[parameters('servers_sql_db_awd_login_user')]",
-                "administratorLoginPassword": "[parameters('servers_sql_db_awd_login_password')]",
+                "administratorLogin": "[parameters('SQLServerLoginUser')]",
+                "administratorLoginPassword": "[parameters('SQLServerLoginUserPassword')]",
                 "version": "12.0",
                 "minimalTlsVersion": "1.2",
                 "publicNetworkAccess": "Enabled",
