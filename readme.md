@@ -21,19 +21,19 @@ Template should help you to kick start working with the Synapse environment with
 - Infrastructure Engineer
 - Data Engineer
 - Cloud Solution Architect
-- Data Archtiect
+- Data Architect
 
-# Product/LZ architecture
+# Landing Zone Architecture
 
-The [Template.json](https://github.com/git-pranayshah/synapse-demo/blob/dev/master/template.json) Azure Resource Manager template will help you automatically deploy the diagram below architecture
+The [Template.json](https://github.com/git-pranayshah/synapse-demo/blob/master/template.json) Azure Resource Manager template will help you automatically deploy the diagram below architecture
 
-![alt image](https://github.com/git-pranayshah/synapse-demo/blob/dev/images/Landing_Zone_Template.png)
+![alt image](https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/images/Landing_Zone_Template.png)
 
-[Template.json](https://github.com/git-pranayshah/synapse-demo/blob/dev/master/template.json) can be modified to match your current infrastructure needs.
+[Template.json](https://github.com/git-pranayshah/synapse-demo/blob/master/template.json) can be modified to match your current infrastructure needs.
 
 # Pre-requisite to deploy the Template
 
-## One Click Deploying Teamplate
+## One Click Deploying Template
 <!-- Powershell command for Translating Git URL for template.json
     $url = "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/SQL-Server/azure_sql.json"
     [uri]::EscapeDataString($url)
@@ -51,38 +51,65 @@ Final URL: <Base URL>/<uri>
 
 Using the search bar on top type Templates
 
-![alt image](https://github.com/git-pranayshah/synapse-demo/blob/dev/master/images/Search.png)
+![alt image](https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/images/Search.png)
 
 - Create a new template
 
-![alt image](https://github.com/git-pranayshah/synapse-demo/blob/dev/master/images/create.png)
+![alt image](https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/images/create.png)
 
 - Give a name and a description to the template
 
-![alt image](https://github.com/git-pranayshah/synapse-demo/blob/dev/master/images/Name%20and%20Description.png)
+![alt image](https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/images/Name%20and%20Description.png)
 
-- Add for modified [Template.json](https://github.com/git-pranayshah/synapse-demo/blob/dev/master/template.json) and save it
+- Add for modified [Template.json](https://github.com/git-pranayshah/synapse-demo/blob/master/template.json) and save it
 
-![alt image](https://github.com/git-pranayshah/synapse-demo/blob/dev/master/images/add%20code.png)
+![alt image](https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/images/add%20code.png)
 
 - Select the newly added template and click deploy
 
-![alt image](https://github.com/git-pranayshah/synapse-demo/blob/dev/master/images/Select%20and%20deploy%20template.png)
+![alt image](https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/images/Select%20and%20deploy%20template.png)
 
 - Fill out the blanks with your details and click purchase
 
-![alt image](https://github.com/git-pranayshah/synapse-demo/blob/dev/master/images/Fill%20out%20the%20details%20and%20purchase.png)
+![alt image](https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/images/CustomDeployment.jpeg)
 
 - Allow 30 minutes for the deployment to complete
 - Peer your Hub and Spoke Virtual Networks as needed
 
-## Post Deployment tasks
+# Post Deployment tasks
 
-Post deployment its requried to configure correct Azure KeyVault which has required credentials to connect to the Microsoft SQL Server having sample Sales data
+Post deployment its required to configure correct Azure KeyVault which has required credentials to connect to the Microsoft SQL Server having sample Sales data. ARM template will comission,
+ARM template will deploy required infrastructure with Synapse. Also, it will deploy following items in synapse to kickstart with the demo
+1.	Under Data 1 Database
+    -	dedicatedsqlpool(SQL)
+2.	Under Develop 2 Scripts,
+    -	01 Customer_Table
+    -	02 Select_Customer_Data
+3.	Under Integrate 1 Pipeline
+    -	Copy Customer Data Demo
 
-# Deployed Services
 
-![alt image](https://github.com/git-pranayshah/synapse-demo/blob/dev/master/images/Fill%20out%20the%20details%20and%20purchase.png)
+## 1. Validate Deployed Services
+
+Validate deployed services which will have similar to below screenshot except the suffix "pagi6to7auim2". This suffix is unique for each resource group name.
+
+![alt image](https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/images/Deployed%20Services.jpeg)
+
+## 2. Open Synapse Workspace
+
+![alt image](https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/images/Synapse-OpenWorkspace.gif)
+
+## 3. Update Linked Service & Confirm SQL Connectivity
+
+![alt image](https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/images/Synapse-Setup.gif)
+
+## 4. Create Table Schema in Synapse SQL Dedicated Pool
+
+![alt image](https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/images/Synapse-CreateTable.gif)
+
+## 5. Execute Data Pipeline & Validate Data load
+
+![alt image](https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/images/Synapse-ExecuteTable.gif)
 
 ## Related references
 example!!
