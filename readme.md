@@ -25,11 +25,11 @@ Template should help you to kick start working with the Synapse environment with
 
 # Landing Zone Architecture
 
-The [Template.json](https://github.com/git-pranayshah/synapse-demo/blob/master/template.json) Azure Resource Manager template will help you automatically deploy the diagram below architecture
+The [Deployment.json](https://github.com/git-pranayshah/synapse-demo/blob/master/deployment.json) Azure Resource Manager template will help you automatically deploy the diagram below architecture
 
 ![alt image](https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/images/Landing_Zone_Template.png)
 
-[Template.json](https://github.com/git-pranayshah/synapse-demo/blob/master/template.json) can be modified to match your current infrastructure needs.
+[Deployment.json](https://github.com/git-pranayshah/synapse-demo/blob/master/deployment.json) can be modified to match your current infrastructure needs.
 
 # Pre-requisite to deploy the Template
 
@@ -61,7 +61,7 @@ Using the search bar on top type Templates
 
 ![alt image](https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/images/Name%20and%20Description.png)
 
-- Add for modified [Template.json](https://github.com/git-pranayshah/synapse-demo/blob/master/template.json) and save it
+- Add for modified [Deployment.json](https://github.com/git-pranayshah/synapse-demo/blob/master/deployment.json) and save it
 
 ![alt image](https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/images/add%20code.png)
 
@@ -74,7 +74,7 @@ Using the search bar on top type Templates
 ![alt image](https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/images/CustomDeployment.jpeg)
 
 - Allow 30 minutes for the deployment to complete
-- Peer your Hub and Spoke Virtual Networks as needed
+- Once deployment is completed please proceed with the Post deployment tasks
 
 # Post Deployment tasks
 
@@ -112,44 +112,15 @@ Validate deployed services which will have similar to below screenshot except th
 ![alt image](https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/images/Synapse-ExecuteTable.gif)
 
 ## Related references
-example!!
-- https://docs.microsoft.com/en-us/azure/virtual-desktop/overview
+- https://docs.microsoft.com/en-us/azure/synapse-analytics/overview-what-is
+- https://docs.microsoft.com/en-us/azure/synapse-analytics/sql-data-warehouse/sql-data-warehouse-overview-what-is
+- https://docs.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=ssms
+- https://docs.microsoft.com/en-us/azure/devops/pipelines/release/azure-key-vault?view=azure-devops&tabs=yaml
+- https://docs.microsoft.com/en-us/azure/data-factory/how-to-use-azure-key-vault-secrets-pipeline-activities
 - https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/
-- https://docs.microsoft.com/en-us/azure/virtual-network/tutorial-connect-virtual-networks-portal#peer-virtual-networks
-- https://docs.microsoft.com/en-us/azure/virtual-desktop/safe-url-list#virtual-machines
+
 
 ## License & Contribute
 
 You are responsible for the performance, the necessary testing, and if needed any regulatory clearance for any of the models produced by this toolbox.
 Please refer [LICENSE](LICENSE) &  [Contribute](https://github.com/git-pranayshah/AnalysisService/blob/master/Contribute.md) for more details
-
-
-
-
-
-
-
-
-
-## One Click Deploying Teamplate
-<!-- Powershell command for Translating Git URL for template.json
-    $url = "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/SQL-Server/azure_sql.json"
-    [uri]::EscapeDataString($url)
-    >> uri = https%3A%2F%2Fraw.githubusercontent.com%2Fgit-pranayshah%2FAnalysisService%2Fmaster%2Ftemplate.json
-
-Base URL: https://portal.azure.com/#create/Microsoft.Template/uri
-Final URL: <Base URL>/<uri>
--->
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fgit-pranayshah%2Fsynapse-demo%2Fdev%2FARM%2520Template%2Fdeployment.json)
-
-
-## One Click Test Deploying Teamplate
-<!-- Powershell command for Translating Git URL for template.json
-    $url = "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/SQL-Server/azure_sql.json"
-    [uri]::EscapeDataString($url)
-    >> uri = https%3A%2F%2Fraw.githubusercontent.com%2Fgit-pranayshah%2FAnalysisService%2Fmaster%2Ftemplate.json
-
-Base URL: https://portal.azure.com/#create/Microsoft.Template/uri
-Final URL: <Base URL>/<uri>
--->
-[![Test Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fgit-pranayshah%2Fsynapse-demo%2Fdev%2FARM%2520Template%2FTestDeployment.json)
