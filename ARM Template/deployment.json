@@ -25,7 +25,7 @@
       },
       "github_branch": {
           "type": "String",
-          "defaultValue": "dev"
+          "defaultValue": "master"
       },
       "github_repo": {
           "type": "String",
@@ -60,7 +60,7 @@
           "properties": {
             "mode": "Incremental",
             "templateLink": {
-              "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/sql-server/azure_sql.json"            },
+              "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/ARM%20Template/sql-server/azure_sql.json"            },
             "parameters": {
               "servers_sample_db_server_mas_name": {
                 "value": "[variables('servers_sample_db_server_mas_name')]"
@@ -81,7 +81,7 @@
           "properties": {
             "mode": "Incremental",
               "templateLink": {
-                "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/synapse/synapse.json"           
+                "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/ARM%20Template/synapse/synapse.json"           
               },
                 "parameters": {
                   "workspaces_working_software_name": {
@@ -124,7 +124,7 @@
                   "properties": {
                     "mode": "Incremental",
                       "templateLink": {
-                        "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/keyVault/keyvault.json"           
+                        "uri": "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/ARM%20Template/keyVault/keyvault.json"           
                       },
                         "parameters": {
                           "valuts_objectid": {
