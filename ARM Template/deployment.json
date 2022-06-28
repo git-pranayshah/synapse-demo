@@ -6,56 +6,56 @@
           "type": "String",
           "defaultValue": "sql-admin",
           "metadata": {
-            "desctuption": "SQL Server User Name"
+            "description": "SQL Server User Name"
           }
       },
       "SQLServerLoginUserPassword": {
           "type": "securestring",
           "defaultValue": "Passw@rd2424",
           "metadata": {
-            "desctuption": "SQL Server User Password"
+            "description": "SQL Server User Password"
           }
       },
       "ClientIp":{
           "type": "String" ,
           "defaultValue": "",
           "metadata": {
-            "desctuption": "IP address of the User"
+            "description": "IP address of the User"
           }
       }, 
       "GithubAccountName": {
           "type": "String",
           "defaultValue": "git-pranayshah",
           "metadata": {
-            "desctuption": "Default git hub repository acccount name having all synapse deployment jsons. Defaults to the mentioned value"
+            "description": "Default git hub repository acccount name having all synapse deployment jsons. Defaults to the mentioned value"
           }
       },
       "GithubBranchName": {
           "type": "String",
           "defaultValue": "master",
           "metadata": {
-            "desctuption": "Default git hub repository branch having all synapse deployment jsons. Defaults to the mentioned value"
+            "description": "Default git hub repository branch having all synapse deployment jsons. Defaults to the mentioned value"
           }
       },
       "GithubRepoName": {
           "type": "String",
           "defaultValue": "synapse-demo",
           "metadata": {
-            "desctuption": "Default git hub repository name having all synapse deployment jsons. Defaults to the mentioned value"
+            "description": "Default git hub repository name having all synapse deployment jsons. Defaults to the mentioned value"
           }
       },
       "GithubRootFolder": {
           "type": "String",
           "defaultValue": "synapse",
           "metadata": {
-            "desctuption": "Default git hub repository root folder having all synapse deployment jsons. Defaults to the mentioned value"
+            "description": "Default git hub repository root folder having all synapse deployment jsons. Defaults to the mentioned value"
           }
       },
       "OptionalKeyvaultsObjectId": {
         "defaultValue": "",
         "type": "String",
         "metadata": {
-          "desctuption": "Do not add any value if you dont have any existing KeyVault with SQL Connection Strigs."
+          "description": "Do not add any value if you dont have any existing KeyVault with SQL Connection Strigs."
         }
        },
         
@@ -63,7 +63,7 @@
             "defaultValue": "[subscription().tenantId]",
             "type": "String",
             "metadata": {
-              "desctuption": "Do not add any value if you dont have any existing KeyVault with SQL Connection Strigs."
+              "description": "Do not add any value if you dont have any existing KeyVault with SQL Connection Strigs."
             }
         },
         "SynapseWorkSpaceName": {
