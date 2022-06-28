@@ -7,6 +7,7 @@ Synapse comes with the multiple flavour including ETL, Storage & Analytics. Curr
 Template should help you to kick start working with the Synapse environment with the preloaded sales data. ARM template will deploy following components in the environment.
 1.	Microsoft SQL Server with Sales Adventureworks Database
 2.	Azure Key Vault with Connection Strings for the SQL Server
+4.  Storage Account
 3.	Synapse Analytics workspace 
     - Dedicated SQLServer Pool
     - Create Table Script
@@ -24,12 +25,7 @@ Template should help you to kick start working with the Synapse environment with
 
 # Product/LZ architecture
 
-The [Template.json](https://github.com/git-pranayshah/template/blob/master/template.json) Azure Resource Manager template will help you automatically deploy the diagram below, which includes:
-
-example!!!
-
-- A Virutal Network Gateway and a Public IP address.
-- A Network Security Group with the necessary outbound rules for Azure Virtual Desktop Hostpools to properly activate and work.
+The [Template.json](https://github.com/git-pranayshah/template/blob/master/template.json) Azure Resource Manager template will help you automatically deploy the diagram below architecture
 
 ![alt image](https://github.com/git-pranayshah/template/blob/master/images/Landing_Zone_Template.png)
 
@@ -37,14 +33,14 @@ example!!!
 
 ## One Click Deploying Teamplate
 <!-- Powershell command for Translating Git URL for template.json
-    $url = "https://raw.githubusercontent.com/git-pranayshah/template/master/template.json"
+    $url = "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/SQL-Server/azure_sql.json"
     [uri]::EscapeDataString($url)
-    >> uri = https%3A%2F%2Fraw.githubusercontent.com%2Fgit-pranayshah%2Ftemplate%2Fmaster%2Ftemplate.json
+    >> uri = https%3A%2F%2Fraw.githubusercontent.com%2Fgit-pranayshah%2FAnalysisService%2Fmaster%2Ftemplate.json
 
 Base URL: https://portal.azure.com/#create/Microsoft.Template/uri
 Final URL: <Base URL>/<uri>
 -->
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fgit-pranayshah%2Ftemplate%2Fmaster%2Ftemplate.json)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fgit-pranayshah%2Fsynapse-demo%2Fdev%2FARM%2520Template%2Fdeployment.json)
 
 
 ## Deploying an ARM Template using the Azure portal
