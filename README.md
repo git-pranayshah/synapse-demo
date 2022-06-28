@@ -39,14 +39,14 @@ To use this solution, you will need access to an Azure subscription. Also have t
 
 ## One Click Deploying Template
 <!-- Powershell command for Translating Git URL for template.json
-    $url = "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/dev/ARM%20Template/SQL-Server/azure_sql.json"
+    $url = "https://raw.githubusercontent.com/git-pranayshah/synapse-demo/master/ARM%20Template/SQL-Server/azure_sql.json"
     [uri]::EscapeDataString($url)
     >> uri = https%3A%2F%2Fraw.githubusercontent.com%2Fgit-pranayshah%2FAnalysisService%2Fmaster%2Ftemplate.json
 
 Base URL: https://portal.azure.com/#create/Microsoft.Template/uri
 Final URL: <Base URL>/<uri>
 -->
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fgit-pranayshah%2Fsynapse-demo%2Fdev%2FARM%2520Template%2Fdeployment.json)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fgit-pranayshah%2Fsynapse-demo%2Fmaster%2FARM%2520Template%2Fdeployment.json)
 
 
 ## Deploying an ARM Template using the Azure portal
