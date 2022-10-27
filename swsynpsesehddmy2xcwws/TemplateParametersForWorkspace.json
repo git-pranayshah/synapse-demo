@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"value": "swsynpsesehddmy2xcwws"
+		},
+		"swsynpseto4gpq4pfhzvu-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:swsynpseto4gpq4pfhzvu.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"working-software-WorkspaceDefaultSqlServer_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:working-software.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"AzureSqlDatabase1_properties_typeProperties_connectionString_secretName": {
+			"value": "AzureSQLDBConnection"
+		},
+		"swsynpseto4gpq4pfhzvu-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://workingswsynapse.dfs.core.windows.net"
+		},
+		"synapse_metadata_properties_typeProperties_baseUrl": {
+			"value": "https://testsehddmy2xcwws.vault.azure.net/"
+		},
+		"working-software-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://workingswsynapse.dfs.core.windows.net"
+		}
+	}
+}
