@@ -1,0 +1,21 @@
+{
+	"name": "AzureSqlDatabase2",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "synapse_metadata",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "AzureSQLDBConnection"
+			}
+		},
+		"connectVia": {
+			"referenceName": "AutoResolveIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
