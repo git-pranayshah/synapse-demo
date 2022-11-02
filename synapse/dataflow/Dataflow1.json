@@ -33,7 +33,7 @@
 					"name": "CastSellStartDate"
 				},
 				{
-					"name": "ConverttoUTC"
+					"name": "DiscontinuedDateUTC"
 				},
 				{
 					"name": "join1"
@@ -81,8 +81,8 @@
 				"          SellStartDate as date 'yyyy/MM/dd'",
 				"     ),",
 				"     errors: true) ~> CastSellStartDate",
-				"CastSellStartDate derive(CurretDate = currentDate()) ~> ConverttoUTC",
-				"ConverttoUTC, ProductCategory join(ProductTable@ProductCategoryID == ProductCategory@ProductCategoryID,",
+				"CastSellStartDate derive(DiscontinuedDateUTC = currentDate()) ~> DiscontinuedDateUTC",
+				"DiscontinuedDateUTC, ProductCategory join(ProductTable@ProductCategoryID == ProductCategory@ProductCategoryID,",
 				"     joinType:'left',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
