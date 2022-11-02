@@ -30,7 +30,7 @@
 			],
 			"transformations": [
 				{
-					"name": "CastSellStartDate"
+					"name": "ListPriceToFloat"
 				},
 				{
 					"name": "DiscontinuedDateUTC"
@@ -78,10 +78,10 @@
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> ProductCategory",
 				"ProductTable cast(output(",
-				"          SellStartDate as date 'yyyy/MM/dd'",
+				"          ListPrice as float '$###.##'",
 				"     ),",
-				"     errors: true) ~> CastSellStartDate",
-				"CastSellStartDate derive(DiscontinuedDateUTC = currentDate()) ~> DiscontinuedDateUTC",
+				"     errors: true) ~> ListPriceToFloat",
+				"ListPriceToFloat derive(SellStartDateUTC = case(isNull(SellStartDate) , currentUTC(), toUTC(SellStartDate))) ~> DiscontinuedDateUTC",
 				"DiscontinuedDateUTC, ProductCategory join(ProductTable@ProductCategoryID == ProductCategory@ProductCategoryID,",
 				"     joinType:'left',",
 				"     matchType:'exact',",
@@ -93,13 +93,13 @@
 				"          ProductNumber,",
 				"          Color,",
 				"          StandardCost,",
-				"          ListPrice,",
+				"          ListPrice = ProductTable@ListPrice,",
 				"          Size,",
 				"          Weight,",
 				"          ProductCategoryID = ProductTable@ProductCategoryID,",
 				"          ProductModelID,",
-				"          SellStartDate,",
-				"          SellEndDate,",
+				"          SellStartDate = ListPrice,",
+				"          SellEndDate = SellStartDateUTC,",
 				"          DiscontinuedDate = DiscontinuedDateUTC,",
 				"          ThumbNailPhoto,",
 				"          ThumbnailPhotoFileName,",
