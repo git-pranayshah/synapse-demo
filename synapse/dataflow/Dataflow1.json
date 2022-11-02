@@ -78,7 +78,7 @@
 				"     isolationLevel: 'READ_UNCOMMITTED',",
 				"     format: 'table') ~> ProductCategory",
 				"ProductTable cast(output(",
-				"          ListPrice as float '$###.##'",
+				"          ListPrice as string",
 				"     ),",
 				"     errors: true) ~> ListPriceToFloat",
 				"ListPriceToFloat derive(DiscontinuedDateUTC = case(isNull(SellStartDate) , currentUTC(), toUTC(SellStartDate))) ~> DiscontinuedDateUTC",
