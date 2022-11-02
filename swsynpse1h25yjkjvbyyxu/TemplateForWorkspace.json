@@ -805,7 +805,7 @@
 						"          ListPrice as string",
 						"     ),",
 						"     errors: true) ~> ListPriceToFloat",
-						"ListPriceToFloat, ProductCategory join(ProductTable@ProductCategoryID === ProductCategory@ProductCategoryID,",
+						"ListPriceToFloat, ProductCategory join(iifNull(ProductTable@ProductCategoryID,1) == iifNull(ProductCategory@ProductCategoryID,0),",
 						"     joinType:'left',",
 						"     matchType:'exact',",
 						"     ignoreSpaces: false,",
