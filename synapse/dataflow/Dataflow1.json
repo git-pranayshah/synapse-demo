@@ -33,9 +33,6 @@
 					"name": "ListPriceToFloat"
 				},
 				{
-					"name": "DiscontinuedDateUTC"
-				},
-				{
 					"name": "join1"
 				},
 				{
@@ -81,8 +78,7 @@
 				"          ListPrice as string",
 				"     ),",
 				"     errors: true) ~> ListPriceToFloat",
-				"ListPriceToFloat derive(DiscontinuedDateUTC = case(isNull(SellStartDate) , currentUTC(), toUTC(SellStartDate))) ~> DiscontinuedDateUTC",
-				"DiscontinuedDateUTC, ProductCategory join(ProductTable@ProductCategoryID == ProductCategory@ProductCategoryID,",
+				"ListPriceToFloat, ProductCategory join(ProductTable@ProductCategoryID == ProductCategory@ProductCategoryID,",
 				"     joinType:'left',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
@@ -99,8 +95,6 @@
 				"          ProductCategoryID = ProductTable@ProductCategoryID,",
 				"          ProductModelID,",
 				"          SellStartDate = ListPrice,",
-				"          SellEndDate = DiscontinuedDateUTC,",
-				"          DiscontinuedDate = DiscontinuedDateUTC,",
 				"          ThumbNailPhoto,",
 				"          ThumbnailPhotoFileName,",
 				"          rowguid = ProductTable@rowguid,",
