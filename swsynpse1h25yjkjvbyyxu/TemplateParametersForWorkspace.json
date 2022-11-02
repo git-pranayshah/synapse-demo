@@ -5,20 +5,23 @@
 		"workspaceName": {
 			"value": "swsynpse1h25yjkjvbyyxu"
 		},
+		"SynapseDemo_accountKey": {
+			"value": ""
+		},
 		"swsynpseto4gpq4pfhzvu-WorkspaceDefaultSqlServer_connectionString": {
 			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:swsynpseto4gpq4pfhzvu.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
 		},
 		"working-software-WorkspaceDefaultSqlServer_connectionString": {
 			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:working-software.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
 		},
-		"SynapseDemo_accountKey": {
-			"value": ""
-		},
 		"AzureSqlDatabase1_properties_typeProperties_connectionString_secretName": {
 			"value": "AzureSQLDBConnection"
 		},
 		"AzureSqlDatabase2_properties_typeProperties_connectionString_secretName": {
 			"value": "AzureSQLDBConnection"
+		},
+		"SynapseDemo_properties_typeProperties_url": {
+			"value": "https://synapsedemoworkshop.dfs.core.windows.net/"
 		},
 		"swsynpseto4gpq4pfhzvu-WorkspaceDefaultStorage_properties_typeProperties_url": {
 			"value": "https://workingswsynapse.dfs.core.windows.net"
@@ -28,9 +31,6 @@
 		},
 		"working-software-WorkspaceDefaultStorage_properties_typeProperties_url": {
 			"value": "https://workingswsynapse.dfs.core.windows.net"
-		},
-		"SynapseDemo_properties_typeProperties_url": {
-			"value": "https://synapsedemoworkshop.dfs.core.windows.net/"
 		}
 	}
 }
