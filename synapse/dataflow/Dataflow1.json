@@ -81,7 +81,7 @@
 				"          SellStartDate as date 'yyyy/MM/dd'",
 				"     ),",
 				"     errors: true) ~> CastSellStartDate",
-				"CastSellStartDate derive(DiscontinuedDateUTC = toUTC(DiscontinuedDate,'Asia/Seoul')) ~> ConverttoUTC",
+				"CastSellStartDate derive(DiscontinuedDateUTC = fromUTC(ModifiedDate,'GMT')) ~> ConverttoUTC",
 				"ConverttoUTC, ProductCategory join(ProductTable@ProductCategoryID == ProductCategory@ProductCategoryID,",
 				"     joinType:'left',",
 				"     matchType:'exact',",
