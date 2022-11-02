@@ -31,6 +31,9 @@
 		},
 		"working-software-WorkspaceDefaultStorage_properties_typeProperties_url": {
 			"value": "https://workingswsynapse.dfs.core.windows.net"
+		},
+		"nyc_tlc_yellow_sasUri": {
+			"value": ""
 		}
 	}
 }
