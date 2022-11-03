@@ -9,10 +9,10 @@
 			"value": ""
 		},
 		"swsynpseto4gpq4pfhzvu-WorkspaceDefaultSqlServer_connectionString": {
-			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:swsynpseto4gpq4pfhzvu.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+			"value": ""
 		},
 		"working-software-WorkspaceDefaultSqlServer_connectionString": {
-			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:working-software.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+			"value": ""
 		},
 		"AzureSqlDatabase1_properties_typeProperties_connectionString_secretName": {
 			"value": "AzureSQLDBConnection"
@@ -23,6 +23,9 @@
 		"SynapseDemo_properties_typeProperties_url": {
 			"value": "https://synapsedemoworkshop.dfs.core.windows.net/"
 		},
+		"nyc_tlc_yellow_sasUri": {
+			"value": ""
+		},
 		"swsynpseto4gpq4pfhzvu-WorkspaceDefaultStorage_properties_typeProperties_url": {
 			"value": "https://workingswsynapse.dfs.core.windows.net"
 		},
@@ -31,9 +34,6 @@
 		},
 		"working-software-WorkspaceDefaultStorage_properties_typeProperties_url": {
 			"value": "https://workingswsynapse.dfs.core.windows.net"
-		},
-		"nyc_tlc_yellow_sasUri": {
-			"value": ""
 		}
 	}
 }
